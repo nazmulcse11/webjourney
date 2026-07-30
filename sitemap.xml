@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://webjourney.dev/</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/laravel</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/javascript</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/quiz/html-quiz-test</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/quiz/css-quiz-test</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/quiz/javascript-quiz-test</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/quiz/jquery-quiz-test</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/about-us</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/contact-us</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/laravel-9-pdf-generate-using-barryvdh-dompdf-invoice-generate-dwnload-invoice</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/how-to-create-multi-language-website-by-laravel-9</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/laravel-9-pagination-without-page-reload-using-ajax-webjourney</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/how-to-upload-image-in-laravel-9</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/laravel-crud-with-image-radio-checkbox-email-date-text-number-color-select-box</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/laravel-pusher-real-time-chat-application-build-with-javascript-jquery</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/radio</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/file-upload</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/laravel-tutorial</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/laravel-crud-app</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/laravel-multi-language-website</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/javascript</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/ajax</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/laravel9</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/laravel-image-crud</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/laravel</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/php</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/laravel-localization</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/checkbox</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/laravel-validation</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/image-upload</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/terms-of-use</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/privacy-policy</loc>
+  <lastmod>2022-10-12T17:22:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/laravel-9-live-search-data-in-a-table-using-ajax</loc>
+  <lastmod>2022-10-13T17:35:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/real-time-search-in-laravel</loc>
+  <lastmod>2022-10-13T17:35:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/laravel-live-search</loc>
+  <lastmod>2022-10-13T17:35:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://webjourney.dev/tutorial/search/laravel-ajax-live-search</loc>
+  <lastmod>2022-10-13T17:35:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
+</urlset>

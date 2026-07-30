@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Category extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'slug',
+        'status',
+        'image',
+    ];
+
+    public function sub_categories()
+    {
+        return $this->hasMany(Subcategory::class);
+    }
+
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class)->where('status','publish');
+    }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class);
+    }
+}

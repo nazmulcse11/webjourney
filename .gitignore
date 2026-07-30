@@ -1,0 +1,23 @@
+# Environment & sensitive configuration
+.env
+.env.*
+
+# AdSense files & uploads
+ads.txt
+BingSiteAuth.xml
+images/
+
+# Dependencies & build artifacts
+/vendor
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# Storage & Cache
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+!storage/framework/cache/.gitignore
+!storage/framework/sessions/.gitignore
+!storage/framework/views/.gitignore

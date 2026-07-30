@@ -1,0 +1,60 @@
+@extends('frontend.layouts.master')
+
+@section('site_title','WebJourney - PHP, Laravel, MySql, Javascript, Jquery, Vue Js Tutorial')
+@section('keywords',get_static_option('keywords'))
+@section('description',get_static_option('description'))
+@section('og_url',route('homepage'))
+@section('og_title','Webjourney')
+@section('og_description','PHP, Laravel, MySql, Javascript, Jquery, Vue Js Tutorial')
+
+@section('css')
+    <style>
+       li.page-item.active {background: #F9B90F;color: white}
+      .page-item:first-child .page-link,
+      .page-item:last-child .page-link{border-top-left-radius: 0.25rem;border-bottom-left-radius: 0.25rem;width: 44px;height: 44px;line-height: 44px;display: inline;padding-top: 15px;border-radius: 5px;background: none;border: 0}
+      .page-link:hover {color: unset}
+      .fa-calendar{color:#F9B90F}
+    </style>
+@endsection
+
+@section('content')
+    <!--  wrapper  -->
+    <div id="wrapper">
+        <!-- content-->
+        <div class="content">
+            <!--Horizontal ads -->
+            <section class="middle-padding ">
+                <div class="container">
+                    <div class="flat-title-wrap">
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8673885649672159" crossorigin="anonymous"></script>
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-8673885649672159"
+                             data-ad-slot="1123428994"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                </div>
+            </section>
+            <!--  ads  end-->
+            <x-frontend.breadcrumb />
+            <!-- section-->
+            <section id="sec1" class="middle-padding grey-blue-bg">
+                <div class="container">
+                    <div class="row">
+                        @include('frontend.pages.partials.post_markup')
+                        @include('frontend.pages.partials.sidebar')
+                    </div>
+                </div>
+                <div class="limit-box fl-wrap"></div>
+            </section>
+            <!-- section end -->
+        </div>
+        <!-- content end-->
+    </div>
+    <!--wrapper end -->
+@endsection
+
