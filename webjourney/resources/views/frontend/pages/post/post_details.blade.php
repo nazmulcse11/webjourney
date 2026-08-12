@@ -48,6 +48,21 @@
     margin-right: 6px;
     margin-bottom: 15px;
 }
+        /* Post Content Typography Styles */
+        .post-description-content h1 { font-size: 28px; font-weight: 700; margin: 20px 0 10px; color: #183c7d; }
+        .post-description-content h2 { font-size: 24px; font-weight: 700; margin: 18px 0 10px; color: #183c7d; }
+        .post-description-content h3 { font-size: 20px; font-weight: 600; margin: 16px 0 8px; color: #183c7d; }
+        .post-description-content h4 { font-size: 18px; font-weight: 600; margin: 14px 0 8px; color: #183c7d; }
+        .post-description-content h5 { font-size: 16px; font-weight: 600; margin: 12px 0 6px; color: #183c7d; }
+        .post-description-content h6 { font-size: 14px; font-weight: 600; margin: 10px 0 6px; color: #183c7d; }
+
+        .post-description-content ul { list-style: disc outside !important; margin-left: 25px !important; margin-bottom: 15px !important; }
+        .post-description-content ol { list-style: decimal outside !important; margin-left: 25px !important; margin-bottom: 15px !important; }
+        .post-description-content li { display: list-item !important; margin-bottom: 6px !important; color: #1f2027; float: none !important; width: auto !important; }
+
+        .post-description-content p { line-height: 1.7; margin-bottom: 15px; font-size: 15px; color: #1f2027; }
+        .post-description-content blockquote { border-left: 4px solid #5ECFB1; padding: 10px 20px; margin: 15px 0; background: #f9f9f9; font-style: italic; }
+        .post-description-content pre, .post-description-content code { background: #f4f4f4; color: #333; padding: 12px; border-radius: 4px; overflow-x: auto; font-family: monospace; display: block; margin-bottom: 15px; }
 </style>
 @endsection
 
@@ -97,7 +112,9 @@
                                     <div class="list-single-main-item-title description_heading_title fl-wrap">
                                         <h1>{{ $post_details->title }}</h1>
                                     </div>
-                                    {!! $post_details->description !!}
+                                    <div class="post-description-content">
+                                        {!! $post_details->description !!}
+                                    </div>
                                     <div class="post-opt">
                                         <ul>
                                             <li><i class="fal fa-calendar"></i> <span>{{ $post_details->created_at->toFormattedDateString() }}</span></li>
