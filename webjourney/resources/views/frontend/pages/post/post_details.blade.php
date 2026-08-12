@@ -48,23 +48,103 @@
     margin-right: 6px;
     margin-bottom: 15px;
 }
-        /* Post Content Typography Styles */
-        .post-description-content { text-align: left !important; }
-        .post-description-content * { text-align: left !important; }
-        .post-description-content h1 { font-size: 28px; font-weight: 700; margin: 20px 0 10px; color: #183c7d; text-align: left !important; }
-        .post-description-content h2 { font-size: 24px; font-weight: 700; margin: 18px 0 10px; color: #183c7d; text-align: left !important; }
-        .post-description-content h3 { font-size: 20px; font-weight: 600; margin: 16px 0 8px; color: #183c7d; text-align: left !important; }
-        .post-description-content h4 { font-size: 18px; font-weight: 600; margin: 14px 0 8px; color: #183c7d; text-align: left !important; }
-        .post-description-content h5 { font-size: 16px; font-weight: 600; margin: 12px 0 6px; color: #183c7d; text-align: left !important; }
-        .post-description-content h6 { font-size: 14px; font-weight: 600; margin: 10px 0 6px; color: #183c7d; text-align: left !important; }
+        /* Post Content Typography & Alignment Reset */
+        .post-description-content { 
+            text-align: left !important; 
+            color: #1f2027;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .post-description-content * { 
+            box-sizing: border-box;
+        }
+        .post-description-content h1, 
+        .post-description-content h2, 
+        .post-description-content h3, 
+        .post-description-content h4, 
+        .post-description-content h5, 
+        .post-description-content h6 {
+            text-align: left !important;
+            color: #183c7d;
+            font-weight: 700;
+            margin-top: 24px !important;
+            margin-bottom: 12px !important;
+            clear: both;
+        }
+        .post-description-content h1 { font-size: 26px !important; }
+        .post-description-content h2 { font-size: 22px !important; }
+        .post-description-content h3 { font-size: 19px !important; font-weight: 600 !important; }
+        .post-description-content h4 { font-size: 17px !important; font-weight: 600 !important; }
+        .post-description-content h5 { font-size: 15px !important; }
+        .post-description-content h6 { font-size: 14px !important; }
 
-        .post-description-content ul { list-style: disc outside !important; margin-left: 25px !important; margin-bottom: 15px !important; padding-left: 0 !important; text-align: left !important; }
-        .post-description-content ol { list-style: decimal outside !important; margin-left: 25px !important; margin-bottom: 15px !important; padding-left: 0 !important; text-align: left !important; }
-        .post-description-content li { display: list-item !important; margin-bottom: 6px !important; color: #1f2027; float: none !important; width: auto !important; text-align: left !important; }
+        .post-description-content p { 
+            text-align: left !important; 
+            margin-bottom: 15px !important;
+            line-height: 1.7 !important;
+        }
 
-        .post-description-content p { line-height: 1.7; margin-bottom: 15px; font-size: 15px; color: #1f2027; text-align: left !important; }
-        .post-description-content blockquote { border-left: 4px solid #5ECFB1; padding: 10px 20px; margin: 15px 0; background: #f9f9f9; font-style: italic; text-align: left !important; }
-        .post-description-content pre, .post-description-content code { background: #f4f4f4; color: #333; padding: 12px; border-radius: 4px; overflow-x: auto; font-family: monospace; display: block; margin-bottom: 15px; text-align: left !important; }
+        .post-description-content ul { 
+            list-style-type: disc !important; 
+            margin: 15px 0 15px 30px !important; 
+            padding-left: 0 !important; 
+            text-align: left !important;
+            display: block !important;
+        }
+        .post-description-content ol { 
+            list-style-type: decimal !important; 
+            margin: 15px 0 15px 30px !important; 
+            padding-left: 0 !important; 
+            text-align: left !important;
+            display: block !important;
+        }
+        .post-description-content li { 
+            display: list-item !important; 
+            list-style: inherit !important;
+            margin-bottom: 8px !important; 
+            color: #1f2027 !important; 
+            float: none !important; 
+            width: auto !important; 
+            text-align: left !important;
+            padding-left: 5px !important;
+        }
+
+        .post-description-content pre {
+            background: #282c34 !important;
+            color: #abb2bf !important;
+            padding: 16px !important;
+            border-radius: 6px !important;
+            overflow-x: auto !important;
+            font-family: Consolas, Monaco, 'Andale Mono', monospace !important;
+            font-size: 14px !important;
+            line-height: 1.5 !important;
+            margin: 18px 0 !important;
+            text-align: left !important;
+            display: block !important;
+            border: 1px solid #1e222b !important;
+        }
+        .post-description-content code {
+            font-family: Consolas, Monaco, 'Andale Mono', monospace !important;
+            font-size: 14px !important;
+            background: #f4f4f5 !important;
+            color: #d63384 !important;
+            padding: 2px 6px !important;
+            border-radius: 4px !important;
+        }
+        .post-description-content pre code {
+            background: transparent !important;
+            color: inherit !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+        }
+        .post-description-content blockquote { 
+            border-left: 4px solid #5ECFB1 !important; 
+            padding: 12px 20px !important; 
+            margin: 20px 0 !important; 
+            background: #f8fafc !important; 
+            font-style: italic !important; 
+            text-align: left !important; 
+        }
 </style>
 @endsection
 
