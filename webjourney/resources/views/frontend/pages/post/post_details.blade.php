@@ -137,7 +137,6 @@
             letter-spacing: normal !important;
         }
         .post-description-content pre * {
-            color: inherit !important;
             background: transparent !important;
             border: none !important;
             padding: 0 !important;
