@@ -69,7 +69,10 @@
             font-weight: 700;
             margin-top: 24px !important;
             margin-bottom: 12px !important;
-            clear: both;
+            clear: both !important;
+            float: none !important;
+            display: block !important;
+            width: 100% !important;
         }
         .post-description-content h1 { font-size: 26px !important; }
         .post-description-content h2 { font-size: 22px !important; }
@@ -82,6 +85,9 @@
             text-align: left !important; 
             margin-bottom: 15px !important;
             line-height: 1.7 !important;
+            clear: both !important;
+            float: none !important;
+            width: 100% !important;
         }
 
         .post-description-content ul { 
@@ -90,6 +96,7 @@
             padding-left: 0 !important; 
             text-align: left !important;
             display: block !important;
+            clear: both !important;
         }
         .post-description-content ol { 
             list-style-type: decimal !important; 
@@ -97,6 +104,7 @@
             padding-left: 0 !important; 
             text-align: left !important;
             display: block !important;
+            clear: both !important;
         }
         .post-description-content li { 
             display: list-item !important; 
@@ -110,32 +118,56 @@
         }
 
         .post-description-content pre {
-            background: #282c34 !important;
-            color: #abb2bf !important;
-            padding: 16px !important;
+            background: #1e1e1e !important;
+            color: #d4d4d4 !important;
+            padding: 16px 20px !important;
             border-radius: 6px !important;
             overflow-x: auto !important;
-            font-family: Consolas, Monaco, 'Andale Mono', monospace !important;
+            font-family: 'Fira Code', Consolas, Monaco, 'Courier New', monospace !important;
             font-size: 14px !important;
-            line-height: 1.5 !important;
+            line-height: 1.6 !important;
             margin: 18px 0 !important;
             text-align: left !important;
             display: block !important;
-            border: 1px solid #1e222b !important;
+            border: 1px solid #333333 !important;
+            clear: both !important;
+            -webkit-text-stroke: 0 !important;
+            text-shadow: none !important;
+            font-weight: 400 !important;
+            letter-spacing: normal !important;
         }
-        .post-description-content code {
-            font-family: Consolas, Monaco, 'Andale Mono', monospace !important;
-            font-size: 14px !important;
-            background: #f4f4f5 !important;
+        .post-description-content pre * {
+            color: inherit !important;
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            font-weight: 400 !important;
+            -webkit-text-stroke: 0 !important;
+            text-shadow: none !important;
+            letter-spacing: normal !important;
+            font-family: inherit !important;
+        }
+        .post-description-content pre:empty {
+            display: none !important;
+        }
+        .post-description-content :not(pre) > code {
+            font-family: 'Fira Code', Consolas, Monaco, 'Courier New', monospace !important;
+            font-size: 13px !important;
+            background: #f1f3f5 !important;
             color: #d63384 !important;
             padding: 2px 6px !important;
             border-radius: 4px !important;
+            font-weight: 500 !important;
+            -webkit-text-stroke: 0 !important;
+            text-shadow: none !important;
         }
         .post-description-content pre code {
             background: transparent !important;
             color: inherit !important;
             padding: 0 !important;
             border-radius: 0 !important;
+            display: inline !important;
         }
         .post-description-content blockquote { 
             border-left: 4px solid #5ECFB1 !important; 
@@ -144,6 +176,7 @@
             background: #f8fafc !important; 
             font-style: italic !important; 
             text-align: left !important; 
+            clear: both !important;
         }
 </style>
 @endsection
