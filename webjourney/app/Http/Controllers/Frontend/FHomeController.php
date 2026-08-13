@@ -88,7 +88,7 @@ class FHomeController extends Controller
         $post_details = Post::with('tags','post_like','post_favourite','comments')->where(['status'=>'publish','type'=>'post'])->where('slug',$slug)->first();
 
         if($post_details){
-            $random_posts = Post::select('id', 'title', 'slug')->inRandomOrder()->take(10)->get();
+            $random_posts = Post::select('id', 'title', 'slug')->where('id', '!=', $post_details->id)->where(['status'=>'publish','type'=>'post'])->inRandomOrder()->take(5)->get();
             DB::table('posts')
                 ->where('id', $post_details->id)
                 ->increment('view', 1);

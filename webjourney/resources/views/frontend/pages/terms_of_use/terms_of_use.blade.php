@@ -36,7 +36,7 @@
 
                                         <p>
                                             {{ __('Webjourney helps to learn web technology. It provides you totally free online tutorials on web development.
-                                                  Our service includes PHP, Laravel, JavaScript, Jquery, Ajax, Json, Vue js, Angular js, React js, MySql and many more. We have
+                                                  Our service includes PHP, Laravel, JavaScript, Vue, React, Next js and many more. We have
                                                   different types of courses like ecommerce website development, blog website development, API development using laravel, laravel live chat application etc. Besides we are working on new tutorial each day to add new things.') }}
                                         </p>
                                         <span class="fw-separator"></span>

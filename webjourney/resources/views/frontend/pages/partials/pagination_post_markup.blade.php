@@ -14,13 +14,20 @@
                         @endif
                     </div>
                     <div class="card-post-content fl-wrap">
-                        <h3><a href="{{ route('post.details',$post->slug) }}">{{ $post->title }}</a></h3>
+                        <h2><a href="{{ route('post.details',$post->slug) }}">{{ $post->title }}</a></h2>
                         <p>{!! Str::limit($post->description,150) !!}</p>
                         <div class="post-author">
                             <a href="{{ route('post.details',$post->slug) }}">
                                 <span>{{ __('Read More...')  }}</span>
                                 <span> &nbsp;&nbsp; </span>
-                                <span><i class="fal fa-calendar" style="color:#F9B90F;"></i> {{ $post->created_at->toFormattedDateString() }}</span>
+                                <span>
+                                    <i class="fal fa-calendar" style="color:#F9B90F;"></i> 
+                                    @if($post->updated_at && $post->created_at && $post->created_at->format('Y-m-d') !== $post->updated_at->format('Y-m-d'))
+                                        Updated: {{ $post->updated_at->toFormattedDateString() }}
+                                    @elseif($post->created_at)
+                                        {{ $post->created_at->toFormattedDateString() }}
+                                    @endif
+                                </span>
                             </a>
 
                         </div>

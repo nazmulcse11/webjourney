@@ -74,10 +74,21 @@
             display: block !important;
             width: 100% !important;
         }
-        .post-description-content h1 { font-size: 26px !important; }
-        .post-description-content h2 { font-size: 22px !important; }
-        .post-description-content h3 { font-size: 19px !important; font-weight: 600 !important; }
-        .post-description-content h4 { font-size: 17px !important; font-weight: 600 !important; }
+        /* Main Post Title Typography */
+        .description_heading_title h1 {
+            font-size: 28px !important;
+            font-weight: 700 !important;
+            color: #183c7d !important;
+            line-height: 1.35 !important;
+            margin-top: 0 !important;
+            margin-bottom: 15px !important;
+            text-align: left !important;
+        }
+
+        .post-description-content h1 { font-size: 24px !important; }
+        .post-description-content h2 { font-size: 21px !important; }
+        .post-description-content h3 { font-size: 18px !important; font-weight: 600 !important; }
+        .post-description-content h4 { font-size: 16px !important; font-weight: 600 !important; }
         .post-description-content h5 { font-size: 15px !important; }
         .post-description-content h6 { font-size: 14px !important; }
 
@@ -161,6 +172,16 @@
             -webkit-text-stroke: 0 !important;
             text-shadow: none !important;
         }
+        .post-description-content h1 code,
+        .post-description-content h2 code,
+        .post-description-content h3 code,
+        .post-description-content h4 code,
+        .post-description-content h5 code,
+        .post-description-content h6 code {
+            font-size: inherit !important;
+            color: inherit !important;
+            font-weight: inherit !important;
+        }
         .post-description-content pre code {
             background: transparent !important;
             color: inherit !important;
@@ -231,7 +252,16 @@
                                     </div>
                                     <div class="post-opt">
                                         <ul>
-                                            <li><i class="fal fa-calendar"></i> <span>{{ $post_details->created_at->toFormattedDateString() }}</span></li>
+                                            <li>
+                                                <i class="fal fa-calendar"></i> 
+                                                <span>
+                                                    @if($post_details->updated_at && $post_details->created_at && $post_details->created_at->format('Y-m-d') !== $post_details->updated_at->format('Y-m-d'))
+                                                        Updated: {{ $post_details->updated_at->toFormattedDateString() }}
+                                                    @elseif($post_details->created_at)
+                                                        {{ $post_details->created_at->toFormattedDateString() }}
+                                                    @endif
+                                                </span>
+                                            </li>
                                             <li><a href="{{ route('post.details',$post_details->slug) }}"><i class="fal fa-eye"></i> <span>{{ $post_details->view }}</span></a></li>
                                             <li data-post_id="{{ $post_details->id }}" class="like-post like_unlike{{ $post_details->id }}">
                                                 <a href="javascript:void(0)">
@@ -292,7 +322,7 @@
                                     <div class="list-single-main-item fl-wrap" id="sec5">
                                         @if($post_details)
                                         <div class="list-single-main-item-title-for-random-post fl-wrap">
-                                            <h3>{{ __('You May Also Like Bellow Articles:') }}</h3>
+                                            <h3>{{ __('You May Also Like Below Articles:') }}</h3>
                                         </div>
                                         <div class="reviews-comments-wrap">
                                             @foreach($random_posts as $post)

@@ -18,6 +18,30 @@
     <!--=============== css  ===============-->
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/css/plugins.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+    <style>
+        .card-post-content h2 {
+            float: left;
+            width: 100%;
+            text-align: left;
+            font-size: 21px !important;
+            font-weight: 700 !important;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 15px;
+            position: relative;
+            line-height: 1.4;
+        }
+        .card-post-content h2:before {
+            display: none !important;
+        }
+        .card-post-content h2 a {
+            color: #183c7d !important;
+            transition: color 0.2s ease;
+        }
+        .card-post-content h2 a:hover {
+            color: #5ECFB1 !important;
+        }
+    </style>
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/css/prism.css') }}">
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="{{asset('images/favicon/favicon.png')}}">
