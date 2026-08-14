@@ -8,6 +8,12 @@
     
     @section('css')
         <style>
+        /* Missing Font Awesome 5 Brands Icons */
+        .fa-whatsapp:before { content: "\f232" !important; }
+        .fa-reddit:before { content: "\f1a1" !important; }
+        .fa-reddit-alien:before { content: "\f281" !important; }
+        .fa-linkedin-in:before { content: "\f0e1" !important; }
+
         table {
             border: 1px solid #d9d7ce;
             display: inline-block;
@@ -37,17 +43,43 @@
         }
         .list-single-main-item-title-for-random-post{border-bottom: 1px solid #eee;}
         .list-single-main-item-title-for-random-post h3{font-size:20px;}
-        .tags-stylwrap-for-random-post  a {
-    float: left;
-    padding: 5px 10px;
-    border-radius: 2px;
-    color: #1f2027;
-    font-size: 16px;
-    background: #ECF6F8;
-    font-weight: 500;
-    margin-right: 6px;
-    margin-bottom: 15px;
-}
+        .tags-stylwrap-for-random-post a {
+            float: left;
+            padding: 10px 18px;
+            border-radius: 6px;
+            color: #1f2027;
+            font-size: 15px;
+            background: #f8fafc;
+            border: 1px solid #eef2f6;
+            font-weight: 600;
+            margin-right: 10px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            display: inline-flex;
+            align-items: center;
+        }
+        .tags-stylwrap-for-random-post a:hover {
+            background: #183c7d;
+            color: #fff;
+            border-color: #183c7d;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(24, 60, 125, 0.15);
+        }
+        .tags-stylwrap-for-random-post a .icon-hover-interact {
+            margin-left: 8px;
+            font-size: 13px;
+            opacity: 0;
+            width: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .tags-stylwrap-for-random-post a:hover .icon-hover-interact {
+            opacity: 1;
+            width: auto;
+            transform: translateX(0);
+        }
         /* Post Content Typography & Alignment Reset */
         .post-description-content { 
             text-align: left !important; 
@@ -75,14 +107,23 @@
             width: 100% !important;
         }
         /* Main Post Title Typography */
+        .description_heading_title {
+            padding-top: 5px !important;
+            padding-bottom: 10px !important;
+            margin-bottom: 15px !important;
+        }
         .description_heading_title h1 {
             font-size: 28px !important;
             font-weight: 700 !important;
             color: #183c7d !important;
             line-height: 1.35 !important;
             margin-top: 0 !important;
-            margin-bottom: 15px !important;
+            margin-bottom: 0px !important;
             text-align: left !important;
+        }
+        /* Reduce the large empty gap above the post when there is no image */
+        .post-article .list-single-main-item:first-of-type {
+            padding-top: 10px !important;
         }
 
         .post-description-content h1 { font-size: 24px !important; }
@@ -327,7 +368,11 @@
                                         <div class="reviews-comments-wrap">
                                             @foreach($random_posts as $post)
                                                 <div class="list-single-tags tags-stylwrap-for-random-post blog-tags">
-                                                     <a href="{{ route('post.details',$post->slug) }}">{{ $post->title }}</a>
+                                                     <a href="{{ route('post.details',$post->slug) }}">
+                                                         <i class="fal fa-file-alt" style="margin-right:8px; opacity:0.7;"></i> 
+                                                         {{ $post->title }}
+                                                         <i class="fas fa-arrow-right icon-hover-interact"></i>
+                                                     </a>
                                                 </div>
                                             @endforeach
                                         </div>

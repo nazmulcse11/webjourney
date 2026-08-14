@@ -11,6 +11,7 @@
     <div id="wrapper">
         <!-- content-->
         <div class="content">
+            <x-frontend.dynamic-breadcrumb :title="__('Terms of Use')" />
             <!-- section-->
             <section  id="sec1" class="middle-padding grey-blue-bg">
                 <div class="container">

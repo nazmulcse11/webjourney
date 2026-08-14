@@ -48,14 +48,21 @@ function single_post_share($url, $title, $img_url)
 
     //all social share link generate
     $facebook_share_link = 'https://www.facebook.com/sharer/sharer.php?u=' . $encoded_url; //have to change this url
-    $twitter_share_link = 'https://twitter.com/intent/tweet?text=' . $post_title . '&amp;url=' . $encoded_url . '&amp;';
-    $pinterest_share_link = 'https://pinterest.com/intent/tweet?text=' . $post_title . '&amp;url=' . $encoded_url . '&amp;';
-    $instagram_share_link = 'https://instagram.com/pin/create/button/?url=' . $encoded_url . '&amp;media=' . $img_url . '&amp;description=' . $post_title;
+    $twitter_share_link = 'https://twitter.com/intent/tweet?text=' . $post_title . '&amp;url=' . $encoded_url;
+    $pinterest_share_link = 'https://pinterest.com/pin/create/button/?url=' . $encoded_url . '&amp;media=' . $img_url . '&amp;description=' . $post_title;
+    $whatsapp_share_link = 'https://api.whatsapp.com/send?text=' . $post_title . '%20' . $encoded_url;
+    $linkedin_share_link = 'https://www.linkedin.com/sharing/share-offsite/?url=' . $encoded_url;
+    $reddit_share_link = 'https://reddit.com/submit?url=' . $encoded_url . '&title=' . $post_title;
 
-    $output .= '<li><a href="' . $facebook_share_link . '"><i class="fab fa-facebook-f"></i></a></li>';
-    $output .= '<li><a href="' . $twitter_share_link . '"><i class="fab fa-twitter"></i></a></li>';
-    $output .= '<li><a href="' . $pinterest_share_link . '"><i class="fab fa-pinterest-p"></i></a></li>';
-    $output .= '<li><a href="' . $instagram_share_link . '"><i class="fab fa-instagram"></i></a></li>';
+    $output .= '<li><a target="_blank" href="' . $facebook_share_link . '" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a></li>';
+    $output .= '<li><a target="_blank" href="' . $twitter_share_link . '" title="Share on Twitter"><i class="fab fa-twitter"></i></a></li>';
+    $output .= '<li><a target="_blank" href="' . $whatsapp_share_link . '" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a></li>';
+    $output .= '<li><a target="_blank" href="' . $linkedin_share_link . '" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>';
+    $output .= '<li><a target="_blank" href="' . $reddit_share_link . '" title="Share on Reddit"><i class="fab fa-reddit-alien"></i></a></li>';
+    $output .= '<li><a target="_blank" href="' . $pinterest_share_link . '" title="Share on Pinterest"><i class="fab fa-pinterest-p"></i></a></li>';
+    
+    // Copy link feature with a professional tooltip message
+    $output .= '<li style="position:relative;"><a href="javascript:void(0);" onclick="var tempInput = document.createElement(\'input\'); tempInput.value = \''.$url.'\'; document.body.appendChild(tempInput); tempInput.select(); document.execCommand(\'copy\'); document.body.removeChild(tempInput); var msg = document.getElementById(\'copy-msg-tooltip\'); if(!msg) { msg = document.createElement(\'span\'); msg.id = \'copy-msg-tooltip\'; msg.style.position = \'absolute\'; msg.style.top = \'-35px\'; msg.style.left = \'50%\'; msg.style.transform = \'translateX(-50%)\'; msg.style.background = \'#183c7d\'; msg.style.color = \'#fff\'; msg.style.padding = \'5px 10px\'; msg.style.borderRadius = \'4px\'; msg.style.fontSize = \'12px\'; msg.style.fontWeight = \'bold\'; msg.style.whiteSpace = \'nowrap\'; msg.style.boxShadow = \'0 2px 5px rgba(0,0,0,0.2)\'; msg.style.zIndex = \'10\'; msg.innerText = \'Copied!\'; this.parentElement.appendChild(msg); } msg.style.display = \'block\'; setTimeout(() => { msg.style.display = \'none\'; }, 2000);" title="Copy Link"><i class="fas fa-copy"></i></a></li>';
 
     return $output;
 }
