@@ -114,7 +114,7 @@ class QuizController extends Controller
                 'description' => $request->description,
             ]);
             toastr_success(__('Type Added Success.'));
-            return redirect()->back();
+            return redirect()->route('admin.type');
         }
         return view('backend.quiz_type.add_type');
     }
@@ -133,7 +133,7 @@ class QuizController extends Controller
                 'description' => $request->description,
             ]);
             toastr_success(__('Type Updated Success.'));
-            return redirect()->back();
+            return redirect()->route('admin.type');
         }
         $type = QuizType::find($id);
         return view('backend.quiz_type.edit_type',compact('type'));
