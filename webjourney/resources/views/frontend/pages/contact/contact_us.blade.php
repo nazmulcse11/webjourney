@@ -13,7 +13,7 @@
        <div class="content">
             <x-frontend.dynamic-breadcrumb :title="__('Contact Us')" />
            <!-- section-->
-           <section  id="sec1" class="middle-padding grey-blue-bg">
+           <section  id="sec1" class="middle-padding grey-blue-bg" style="min-height: calc(100vh - 80px);">
                <div class="container">
                    <div class="row">
                        <div class="col-md-4">

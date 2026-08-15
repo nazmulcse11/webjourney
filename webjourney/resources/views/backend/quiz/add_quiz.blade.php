@@ -50,6 +50,10 @@
                                         <label for="correct_answer">{{ __('Correct Answer') }}</label>
                                         <input type="text" class="form-control" name="correct_answer" id="correct_answer" value="{{ old('correct_answer') }}" placeholder="{{ __('Quiz Answer') }}">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="explanation">{{ __('Explanation') }} <small class="text-muted">(Optional — shown after user answers)</small></label>
+                                        <textarea class="form-control" name="explanation" id="explanation" rows="4" placeholder="{{ __('Explain why the correct answer is right...') }}">{{ old('explanation') }}</textarea>
+                                    </div>
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">

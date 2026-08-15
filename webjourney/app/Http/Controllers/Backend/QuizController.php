@@ -31,14 +31,14 @@ class QuizController extends Controller
             ]);
 
             Quiz::create([
-                'title'=>$request->title,
-                'quiz_type_id'=>$request->quiz_type_id,
-                'option_a'=>$request->option_a,
-                'option_b'=>$request->option_b,
-                'option_c'=>$request->option_c,
-                'option_d'=>$request->option_d,
-                'correct_answer'=>$request->correct_answer,
-
+                'title'        => $request->title,
+                'quiz_type_id' => $request->quiz_type_id,
+                'option_a'     => $request->option_a,
+                'option_b'     => $request->option_b,
+                'option_c'     => $request->option_c,
+                'option_d'     => $request->option_d,
+                'correct_answer' => $request->correct_answer,
+                'explanation'  => $request->explanation,
             ]);
             toastr_success(__('Quiz Added Success.'));
             return redirect()->back();
@@ -61,13 +61,14 @@ class QuizController extends Controller
             ]);
 
             Quiz::where('id',$id)->update([
-                'title'=>$request->title,
-                'quiz_type_id'=>$request->quiz_type_id,
-                'option_a'=>$request->option_a,
-                'option_b'=>$request->option_b,
-                'option_c'=>$request->option_c,
-                'option_d'=>$request->option_d,
-                'correct_answer'=>$request->correct_answer,
+                'title'        => $request->title,
+                'quiz_type_id' => $request->quiz_type_id,
+                'option_a'     => $request->option_a,
+                'option_b'     => $request->option_b,
+                'option_c'     => $request->option_c,
+                'option_d'     => $request->option_d,
+                'correct_answer' => $request->correct_answer,
+                'explanation'  => $request->explanation,
             ]);
             toastr_success(__('Quiz Updated Success.'));
             return redirect()->back();

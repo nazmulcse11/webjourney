@@ -19,17 +19,18 @@ class FQuizController extends Controller
     public function quiz_answer_check(Request $request)
     {
         if($request->ajax()){
-            $correct_answer = Quiz::select('correct_answer')->where('id',$request->quiz_id)->first();
+            $quiz = Quiz::select('correct_answer','explanation')->where('id',$request->quiz_id)->first();
             $answer = Quiz::select('correct_answer')->where('id',$request->quiz_id)->where('correct_answer',$request->choose_answer)->first();
             if($answer != NULL){
                 return response()->json([
-                    'status'=>'success',
-                    'answer'=>$answer,
+                    'status'      => 'success',
+                    'explanation' => $quiz->explanation,
                 ]);
             }else{
                 return response()->json([
-                    'status'=>'wrong',
-                    'correct_answer'=>$correct_answer->correct_answer,
+                    'status'         => 'wrong',
+                    'correct_answer' => $quiz->correct_answer,
+                    'explanation'    => $quiz->explanation,
                 ]);
             }
 

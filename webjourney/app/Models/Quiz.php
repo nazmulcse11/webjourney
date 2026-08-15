@@ -16,6 +16,7 @@ class Quiz extends Model
         'option_c',
         'option_d',
         'correct_answer',
+        'explanation',
         'quiz_type_id',
         'type',
         'status',

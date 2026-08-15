@@ -35,24 +35,7 @@
     <div id="wrapper">
         <!-- content-->
         <div class="content">
-             <!--Horizontal ads -->
-            <section class="middle-padding ">
-                <div class="container">
-                    <div class="flat-title-wrap">
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8673885649672159" crossorigin="anonymous"></script>
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-8673885649672159"
-                             data-ad-slot="1123428994"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                        <script>
-                             (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
-                    </div>
-                </div>
-            </section>
-            <!--  ads  end-->
+
             <x-frontend.dynamic-breadcrumb :title="__('Category: ').$category->name" />
             <!-- section-->
             <section  id="sec1" class="middle-padding grey-blue-bg">
