@@ -197,6 +197,7 @@
             -webkit-transition: box-shadow 0.3s ease;
             transition: box-shadow 0.3s ease;
             margin-bottom: 0;
+            text-align: left !important;
         }
 
         .quiz-question-block:hover {
@@ -207,6 +208,7 @@
             display: table;
             width: 100%;
             margin-bottom: 14px;
+            text-align: left !important;
         }
 
         .qq-number-cell {
@@ -214,6 +216,7 @@
             vertical-align: top;
             width: 44px;
             padding-top: 1px;
+            text-align: left !important;
         }
 
         .qq-number {
@@ -231,6 +234,7 @@
         .qq-title-cell {
             display: table-cell;
             vertical-align: top;
+            text-align: left !important;
         }
 
         .qq-title {
@@ -239,6 +243,7 @@
             color: #0f172a;
             line-height: 1.55;
             margin: 0;
+            text-align: left !important;
         }
 
         /* ===== OPTIONS ===== */
@@ -302,6 +307,7 @@
         .qq-opt-text-cell {
             display: table-cell;
             vertical-align: middle;
+            text-align: left !important;
         }
 
         .qq-option-text {
@@ -310,6 +316,7 @@
             color: #334155;
             line-height: 1.45;
             font-family: sans-serif;
+            text-align: left !important;
         }
 
         .qq-opt-check-cell {
