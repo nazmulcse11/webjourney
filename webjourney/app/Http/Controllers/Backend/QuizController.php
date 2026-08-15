@@ -109,8 +109,9 @@ class QuizController extends Controller
                 'slug'=>'required',
             ]);
             QuizType::create([
-                'type'=>$request->type,
-                'slug'=>$request->slug,
+                'type'        => $request->type,
+                'slug'        => $request->slug,
+                'description' => $request->description,
             ]);
             toastr_success(__('Type Added Success.'));
             return redirect()->back();
@@ -127,8 +128,9 @@ class QuizController extends Controller
             ]);
 
             QuizType::where('id',$id)->update([
-                'type'=>$request->type,
-                'slug'=>$request->slug,
+                'type'        => $request->type,
+                'slug'        => $request->slug,
+                'description' => $request->description,
             ]);
             toastr_success(__('Type Updated Success.'));
             return redirect()->back();

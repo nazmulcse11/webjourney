@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class QuizType extends Model
 {
     use HasFactory;
-    protected $fillable = ['type','slug','status'];
+    protected $fillable = ['type','slug','status','description'];
 
     public function quizzes(){
         return $this->hasMany(Quiz::class,'quiz_type_id','id');

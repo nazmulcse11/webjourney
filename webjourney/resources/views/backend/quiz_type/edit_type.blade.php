@@ -39,6 +39,10 @@
                                         <label for="slug">{{ __('Slug') }}</label>
                                         <input type="text" class="form-control" name="slug" id="slug" value="{{ $type->slug }}" placeholder="{{ __('Slug') }}">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="description">{{ __('Mini Description') }}</label>
+                                        <textarea class="form-control" name="description" id="description" rows="3" placeholder="{{ __('Short description for SEO & frontend display') }}">{{ $type->description }}</textarea>
+                                    </div>
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">

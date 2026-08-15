@@ -70,9 +70,8 @@
                                         <polyline points="8 6 2 12 8 18"></polyline>
                                     </svg>
                                 </span>
-                                <div style="display: flex; flex-direction: column;">
+                                <div>
                                     <span class="quiz-title">{{ $type->type }}</span>
-                                    <span class="quiz-subtext">Test your skills now &rarr;</span>
                                 </div>
                             </a>
                         </li>
