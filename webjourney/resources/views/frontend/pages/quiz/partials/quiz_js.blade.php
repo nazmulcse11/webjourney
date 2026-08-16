@@ -109,6 +109,12 @@ $(document).ready(function () {
         $('#qrp-acc').text(acc + '%');
         $('#qrp-time').text(used);
 
+        // Hide top stats dashboard when final result panel is shown
+        $('#quiz-stats-dashboard').fadeOut(400);
+        if ($('#qsd-spacer').length) {
+            $('#qsd-spacer').hide().height(0);
+        }
+
         $('#quiz-result-panel').fadeIn(600);
         $('html, body').animate({ scrollTop: $('#quiz-result-panel').offset().top - 100 }, 800);
     }
@@ -192,6 +198,60 @@ $(document).ready(function () {
     // ── INIT ──
     updateStats();
     $('#qsd-time-display').text(formatTime(timeLeft)).addClass('color-green');
+
+    // ── STICKY PROGRESS BAR (JS-based — CSS sticky broken by .content {overflow:hidden}) ──
+    (function () {
+        var $dash = $('#quiz-stats-dashboard');
+        if (!$dash.length) return;
+
+        // Insert a same-height placeholder right after the dashboard so layout doesn't jump
+        var $spacer = $('<div id="qsd-spacer" style="display:none;"></div>');
+        $dash.after($spacer);
+
+        var HEADER_H = 50; // .main-header height from theme CSS
+        var dashTop  = $dash.offset().top; // distance from page top to dashboard
+        var isFixed  = false;
+
+        function applySticky() {
+            var scrollY = $(window).scrollTop();
+            var triggerAt = dashTop - HEADER_H;
+
+            if (scrollY >= triggerAt && !isFixed) {
+                // Go fixed
+                $spacer.height($dash.outerHeight(true)).show();
+                $dash.css({
+                    position: 'fixed',
+                    top: HEADER_H + 'px',
+                    left: $dash.offset().left + 'px',   // keep same left
+                    width: $dash.outerWidth() + 'px',
+                    zIndex: 9999,
+                    borderRadius: '0 0 16px 16px',
+                    boxShadow: '0 12px 40px rgba(0,0,0,0.4)'
+                });
+                isFixed = true;
+            } else if (scrollY < triggerAt && isFixed) {
+                // Restore
+                $spacer.hide().height(0);
+                $dash.css({
+                    position: '',
+                    top: '',
+                    left: '',
+                    width: '',
+                    zIndex: '',
+                    borderRadius: '',
+                    boxShadow: ''
+                });
+                isFixed = false;
+            }
+
+            // On resize keep width in sync
+            if (isFixed) {
+                $dash.width($spacer.outerWidth());
+            }
+        }
+
+        $(window).on('scroll resize', applySticky);
+    })();
 
 });
 </script>

@@ -8,6 +8,7 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.'],function(){
     Route::group(['middleware'=>'admin'],function(){
         Route::get('logout',[Backend\AdminController::class,'logout'])->name('logout');
         Route::get('dashboard',[Backend\DashboardController::class,'dashboard'])->name('dashboard');
+        Route::get('dashboard/realtime-data',[Backend\DashboardController::class,'realtime_data'])->name('dashboard.realtime');
 
         Route::group(['prefix'=>'category'],function(){
             Route::get('/',[Backend\CategoryController::class,'category'])->name('category');

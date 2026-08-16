@@ -581,9 +581,176 @@
                 font-size: 14px;
             }
 
-            .qrp-cell-val {
-                font-size: 22px;
+        /* ===== OTHER QUIZZES BOTTOM CARD (ISOLATED STYLES) ===== */
+        .other-quizzes-card,
+        .other-quizzes-card * {
+            box-sizing: border-box !important;
+            float: none !important;
+        }
+
+        .other-quizzes-card {
+            background: #ffffff !important;
+            border-radius: 16px !important;
+            padding: 24px 28px !important;
+            margin-top: 35px !important;
+            margin-bottom: 25px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+            border: 1.5px solid #e2e8f0 !important;
+            clear: both !important;
+            display: block !important;
+            width: 100% !important;
+            text-align: left !important;
+        }
+
+        .other-quizzes-card .oqc-header {
+            text-align: left !important;
+            margin-bottom: 20px !important;
+            padding-bottom: 14px !important;
+            border-bottom: 2px solid #f1f5f9 !important;
+            display: block !important;
+            width: 100% !important;
+        }
+
+        .other-quizzes-card .oqc-title {
+            font-size: 20px !important;
+            font-weight: 800 !important;
+            color: #0f172a !important;
+            margin: 0 0 6px 0 !important;
+            display: block !important;
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+            line-height: 1.3 !important;
+            border: none !important;
+            padding: 0 !important;
+            text-align: left !important;
+        }
+
+        .other-quizzes-card .oqc-title i {
+            color: #4f46e5 !important;
+            margin-right: 8px !important;
+        }
+
+        .other-quizzes-card .oqc-sub {
+            font-size: 14px !important;
+            color: #64748b !important;
+            margin: 0 !important;
+            font-weight: 500 !important;
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+            display: block !important;
+            line-height: 1.5 !important;
+            text-align: left !important;
+        }
+
+        .other-quizzes-card .oqc-grid {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            margin: -8px !important;
+            padding: 0 !important;
+            width: calc(100% + 16px) !important;
+        }
+
+        .other-quizzes-card .oqc-item-wrapper {
+            flex: 0 0 50% !important;
+            max-width: 50% !important;
+            padding: 8px !important;
+        }
+
+        @media (max-width: 767px) {
+            .other-quizzes-card .oqc-item-wrapper {
+                flex: 0 0 100% !important;
+                max-width: 100% !important;
             }
+        }
+
+        .other-quizzes-card .oqc-item-link {
+            text-decoration: none !important;
+            display: block !important;
+            width: 100% !important;
+        }
+
+        .other-quizzes-card .oqc-item {
+            background: #f8fafc !important;
+            border: 1.5px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            padding: 14px 18px !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 14px !important;
+            transition: all 0.25s ease !important;
+            position: relative !important;
+            width: 100% !important;
+            text-align: left !important;
+        }
+
+        .other-quizzes-card .oqc-item:hover {
+            border-color: #6366f1 !important;
+            background: #ffffff !important;
+            transform: translateY(-3px) !important;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15) !important;
+        }
+
+        .other-quizzes-card .oqc-item.active-quiz {
+            border-color: #f59e0b !important;
+            background: #fffdf5 !important;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1) !important;
+        }
+
+        .other-quizzes-card .oqc-icon-box {
+            width: 44px !important;
+            height: 44px !important;
+            border-radius: 10px !important;
+            background: #e0e7ff !important;
+            color: #4338ca !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 18px !important;
+            font-weight: 700 !important;
+            flex-shrink: 0 !important;
+            transition: background 0.2s, color 0.2s !important;
+        }
+
+        .other-quizzes-card .oqc-item:hover .oqc-icon-box {
+            background: #6366f1 !important;
+            color: #ffffff !important;
+        }
+
+        .other-quizzes-card .oqc-item.active-quiz .oqc-icon-box {
+            background: #fef3c7 !important;
+            color: #d97706 !important;
+        }
+
+        .other-quizzes-card .oqc-content {
+            flex: 1 !important;
+            min-width: 0 !important;
+            text-align: left !important;
+        }
+
+        .other-quizzes-card .oqc-item-title {
+            font-size: 15px !important;
+            font-weight: 700 !important;
+            color: #1e293b !important;
+            margin: 0 0 3px 0 !important;
+            display: block !important;
+            transition: color 0.2s !important;
+            line-height: 1.3 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            text-align: left !important;
+        }
+
+        .other-quizzes-card .oqc-item:hover .oqc-item-title {
+            color: #4f46e5 !important;
+        }
+
+        .other-quizzes-card .oqc-item-count {
+            font-size: 12px !important;
+            color: #64748b !important;
+            font-weight: 600 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 5px !important;
+            text-align: left !important;
         }
     </style>
 @endsection
@@ -627,6 +794,53 @@
                                 <!-- article end -->
                             </div>
                             <!--post-container end -->
+
+                            <!-- Other Quizzes Card -->
+                            @php
+                                $otherQuizTypes = App\Models\QuizType::whereHas('quizzes')->where('status', 1)->get();
+                            @endphp
+                            @if($otherQuizTypes->count() > 0)
+                            <div style="background-color: #ffffff !important; border-radius: 16px !important; padding: 24px !important; margin-top: 30px !important; margin-bottom: 25px !important; border: 1px solid #e2e8f0 !important; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important; clear: both !important; display: block !important; width: 100% !important; text-align: left !important; box-sizing: border-box !important;">
+                                <div style="text-align: left !important; margin-bottom: 20px !important; padding-bottom: 14px !important; border-bottom: 2px solid #f1f5f9 !important; display: block !important; width: 100% !important; clear: both !important;">
+                                    <div style="display: flex !important; align-items: center !important; gap: 10px !important; margin-bottom: 6px !important; text-align: left !important;">
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; display: inline-block !important;"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                                        <h3 style="font-size: 20px !important; font-weight: 800 !important; color: #0f172a !important; margin: 0 !important; border: none !important; padding: 0 !important; text-align: left !important; line-height: 1.3 !important; display: inline-block !important;">
+                                            {{ __('Explore Other Quiz Topics') }}
+                                        </h3>
+                                    </div>
+                                    <p style="font-size: 14px !important; color: #64748b !important; margin: 6px 0 0 0 !important; font-weight: 500 !important; text-align: left !important; line-height: 1.5 !important; display: block !important; clear: both !important; width: 100% !important;">
+                                        {{ __('Test your programming skills and knowledge across all available quiz topics.') }}
+                                    </p>
+                                </div>
+                                <div style="display: flex !important; flex-wrap: wrap !important; margin: -6px !important; padding: 0 !important; width: calc(100% + 12px) !important; box-sizing: border-box !important;">
+                                    @foreach($otherQuizTypes as $otherType)
+                                        @php $isActive = ($otherType->id == $type->id); @endphp
+                                        <div style="flex: 0 0 50% !important; max-width: 50% !important; padding: 6px !important; box-sizing: border-box !important;">
+                                            <a href="{{ route('quiz.tutorial', $otherType->slug) }}" style="text-decoration: none !important; display: block !important; width: 100% !important;">
+                                                <div style="background-color: {{ $isActive ? '#fffdf5' : '#f8fafc' }} !important; border: 1.5px solid {{ $isActive ? '#f59e0b' : '#e2e8f0' }} !important; border-radius: 12px !important; padding: 14px 16px !important; display: flex !important; align-items: flex-start !important; gap: 12px !important; width: 100% !important; text-align: left !important; box-sizing: border-box !important;">
+                                                    <div style="width: 40px !important; height: 40px !important; border-radius: 10px !important; background-color: {{ $isActive ? '#fef3c7' : '#e0e7ff' }} !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important; margin-top: 2px !important;">
+                                                        @if($isActive)
+                                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: block !important;"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                                                        @else
+                                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4338ca" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: block !important;"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                                                        @endif
+                                                    </div>
+                                                    <div style="flex: 1 !important; min-width: 0 !important; text-align: left !important;">
+                                                        <div style="font-size: 14.5px !important; font-weight: 700 !important; color: #1e293b !important; margin: 0 0 4px 0 !important; display: block !important; line-height: 1.4 !important; text-align: left !important; word-break: break-word !important;">
+                                                            {{ $otherType->type }}
+                                                        </div>
+                                                        <div style="font-size: 12px !important; color: #64748b !important; font-weight: 600 !important; display: flex !important; align-items: center !important; gap: 5px !important; text-align: left !important; margin: 0 !important;">
+                                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block !important; flex-shrink:0;"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                                            {{ $otherType->quizzes()->where('status', 1)->count() }} {{ __('Questions') }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @endif
                         </div>
                         <!-- blog content end -->
                         @include('frontend.pages.quiz.partials.sidebar')

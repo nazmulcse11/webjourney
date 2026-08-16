@@ -26,7 +26,7 @@
             @if($category->status==1)
                 <span class="btn btn-primary btn-sm m-1"> {{ __('Active') }}</span>
             @else
-                <span class="btn btn-primary btn-sm m-1"> {{ __('Inactive') }}</span>
+                <span class="btn btn-danger btn-sm m-1"> {{ __('Inactive') }}</span>
             @endif
              <x-backend.status_change :url="route('admin.status.category',$category->id)" />
         </td>

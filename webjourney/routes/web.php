@@ -11,6 +11,7 @@ Route::get('/about-us',[Frontend\StaticPageController::class,'about_us'])->name(
 Route::get('/contact-us',[Frontend\StaticPageController::class,'contact_us'])->name('contact.us');
 Route::post('contact/send-email',[Frontend\StaticPageController::class,'send_email'])->name('contact.email.send');
 Route::get('tutorial/{category}',[Frontend\CategoryTagController::class,'category_tutorial'])->name('category.tutorial');
+Route::get('tutorial/sub/{subcategory}',[Frontend\CategoryTagController::class,'subcategory_tutorial'])->name('subcategory.tutorial');
 Route::get('tutorial/search/{tag}',[Frontend\CategoryTagController::class,'tag_tutorial'])->name('tag.tutorial');
 Route::get('/{slug}',[Frontend\FHomeController::class,'post_details'])->name('post.details');
 Route::get('search/header-live-search',[Frontend\FSearchController::class,'header_live_search'])->name('header.live.search');

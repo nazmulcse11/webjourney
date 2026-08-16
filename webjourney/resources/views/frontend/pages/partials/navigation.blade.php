@@ -1,15 +1,21 @@
 <div class="nav-holder main-menu">
     <nav>
         <ul>
-            <li>
-                <a href="{{ route('homepage') }}">{{ __('Tutorials') }} <i class="fas fa-caret-down"></i></a>
-                <ul>
-                    @php $categories = App\Models\Category::whereHas('posts')->where('status',1)->get() @endphp
-                    @foreach($categories as $category)
-                        <li><a href="{{ route('category.tutorial',$category->slug ) }}">{{ $category->name }}</a></li>
-                    @endforeach
-                </ul>
-            </li>
+            @php 
+                $categories = App\Models\Category::where('status', 1)->with(['sub_categories' => function($q) {
+                    $q->where('status', 1);
+                }])->get(); 
+            @endphp
+            @foreach($categories as $category)
+                @php
+                    $isCurrentCategory = request()->routeIs('category.tutorial') && request()->route('category') == $category->slug;
+                @endphp
+                <li>
+                    <a href="{{ route('category.tutorial', $category->slug) }}" class="{{ $isCurrentCategory ? 'act-link' : '' }}">
+                        {{ $category->name }} 
+                    </a>
+                </li>
+            @endforeach
             <li>
                 <a href="{{ route('homepage') }}">{{ __('Quiz Test') }}  <i class="fas fa-caret-down"></i></a>
                 <ul style="width: 320px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
@@ -78,8 +84,6 @@
                     @endforeach
                 </ul>
             </li>
-            <li><a href="{{ route('about.us') }}">{{ __('About Us') }}</a></li>
-            <li><a href="{{ route('contact.us') }}">{{ __('Contact Us') }}</a></li>
         </ul>
     </nav>
 </div>
