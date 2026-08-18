@@ -19,6 +19,12 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/css/plugins.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <style>
+        /* Missing Font Awesome 5 Brands Icons */
+        .fa-whatsapp:before { content: "\f232" !important; }
+        .fa-reddit:before { content: "\f1a1" !important; }
+        .fa-reddit-alien:before { content: "\f281" !important; }
+        .fa-linkedin-in:before { content: "\f0e1" !important; }
+
         .card-post-content h2 {
             float: left;
             width: 100%;
