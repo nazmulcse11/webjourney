@@ -18,20 +18,43 @@
             @endforeach
             <li>
                 <a href="{{ route('homepage') }}">{{ __('Quiz Test') }}  <i class="fas fa-caret-down"></i></a>
-                <ul style="width: 320px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                <ul class="quiz-dropdown-menu">
                     <style>
                         /* Make all standard dropdown text 15px to match */
                         .nav-holder nav li ul a {
                             font-size: 15px !important;
                         }
+                        .quiz-dropdown-menu {
+                            width: 320px !important; 
+                            border-radius: 8px !important; 
+                            box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+                            max-height: 540px !important;
+                            overflow-y: auto !important;
+                            overflow-x: hidden !important;
+                        }
+                        /* Sleek subtle scrollbar for quiz dropdown */
+                        .quiz-dropdown-menu::-webkit-scrollbar {
+                            width: 5px;
+                        }
+                        .quiz-dropdown-menu::-webkit-scrollbar-track {
+                            background: #f1f5f9;
+                            border-radius: 4px;
+                        }
+                        .quiz-dropdown-menu::-webkit-scrollbar-thumb {
+                            background: #cbd5e1;
+                            border-radius: 4px;
+                        }
+                        .quiz-dropdown-menu::-webkit-scrollbar-thumb:hover {
+                            background: #94a3b8;
+                        }
                         .quiz-dropdown-item {
-                            white-space: normal; 
-                            line-height: 1.4; 
-                            padding: 12px 18px !important; 
+                            white-space: normal !important; 
+                            line-height: 1.25 !important; 
+                            padding: 9px 14px !important; 
                             display: flex !important; 
-                            align-items: center; 
-                            gap: 12px; 
-                            transition: all 0.2s;
+                            align-items: center !important; 
+                            gap: 12px !important; 
+                            transition: all 0.2s !important;
                         }
                         .quiz-dropdown-item:hover {
                             background-color: #f8fafc !important;
@@ -40,30 +63,34 @@
                             color: #F9B90F !important; /* Matches theme highlight color */
                         }
                         .quiz-title {
-                            font-weight: 700; 
+                            font-weight: 600; 
                             color: #1e293b; 
-                            font-size: 15px;
+                            font-size: 14px;
+                            line-height: 1.25 !important;
                             transition: color 0.2s;
                             display: block;
+                            margin: 0 !important;
+                            padding: 0 !important;
                         }
                         .quiz-subtext {
                             font-size: 12px; 
                             color: #64748b; 
                             margin-top: 2px;
                             display: block;
+                            line-height: 1.2 !important;
                         }
                         .quiz-icon-box {
                             background: #e0e7ff; 
                             color: #4338ca; 
-                            width: 36px; 
-                            height: 36px; 
+                            width: 34px; 
+                            height: 34px; 
                             border-radius: 8px; 
                             display: flex; 
                             align-items: center; 
                             justify-content: center; 
                             font-weight: bold; 
                             flex-shrink: 0; 
-                            font-size: 16px;
+                            font-size: 15px;
                         }
                     </style>
                     @php $types= App\Models\QuizType::whereHas('quizzes')->where('status',1)->get() @endphp
