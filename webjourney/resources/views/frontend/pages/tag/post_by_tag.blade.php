@@ -1,9 +1,14 @@
 @extends('frontend.layouts.master')
-@section('site_title'){{ 'WebJourney - '.$tag->name. ' tutorials'}}@endsection
-@section('description',get_static_option('description'))
+@php
+    $tagTitle = $tag->name . ' Tutorials & Articles - WebJourney';
+    $tagDesc = 'Browse tutorials, code examples, and developer guides tagged with ' . $tag->name . ' on WebJourney.';
+@endphp
+@section('robots', 'noindex, follow')
+@section('site_title'){{ $tagTitle }}@endsection
+@section('description'){{ $tagDesc }}@endsection
 @section('og_url'){{ route('tag.tutorial',$tag->slug) }}@endsection
-@section('og_title','Webjourney')
-@section('og_description'){{ 'Our '.$tag->name. ' tutorial helps you to learn some amazing topics.'}}@endsection
+@section('og_title'){{ $tagTitle }}@endsection
+@section('og_description'){{ $tagDesc }}@endsection
 @section('og_image'){{asset('frontend/images/web-journey-your-web-tutor.png')}}@endsection
 @section('css')
     <style>

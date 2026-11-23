@@ -1,2 +1,8 @@
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin/
+Disallow: /user/
+Disallow: /search/
+Disallow: /quiz/answer/check
+
+Sitemap: https://webjourney.dev/sitemap.xml

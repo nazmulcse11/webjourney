@@ -1,10 +1,65 @@
 @extends('frontend.layouts.master')
-@section('site_title'){{__('Webjourney')}} - {{ $type->type }} Quiz Test @endsection
-@section('description', get_static_option('description'))
-@section('og_url'){{ route('quiz.tutorial', $type->slug) }} @endsection
-@section('og_title'){{ $type->type }} Quiz Test @endsection
-@section('og_description'){{ $type->type }} Quiz Test - Check Your Skill @endsection
-@section('og_image'){{asset('frontend/images/web-journey-your-web-tutor.png')}} @endsection
+@php
+    $quizCount = $quizzes->count();
+    $quizTitle = $type->type . ' Online Test & MCQ Practice (' . $quizCount . ' Questions) - WebJourney';
+    $quizDescription = !empty($type->description)
+        ? $type->description
+        : 'Test your ' . $type->type . ' knowledge with ' . $quizCount . ' interactive multiple-choice questions (MCQs), instant score feedback, and detailed answer explanations on WebJourney.';
+    $quizUrl = route('quiz.tutorial', $type->slug);
+@endphp
+@section('site_title'){{ $quizTitle }}@endsection
+@section('description'){{ $quizDescription }}@endsection
+@section('canonical'){{ $quizUrl }}@endsection
+@section('og_url'){{ $quizUrl }}@endsection
+@section('og_title'){{ $quizTitle }}@endsection
+@section('og_description'){{ $quizDescription }}@endsection
+@section('og_image'){{ asset('frontend/images/web-journey-your-web-tutor.png') }}@endsection
+@section('schema')
+<script type="application/ld+json">
+{!! json_encode([
+    '@context' => 'https://schema.org',
+    '@graph' => [
+        [
+            '@type' => 'Quiz',
+            'name' => $quizTitle,
+            'description' => $quizDescription,
+            'url' => $quizUrl,
+            'educationalUse' => 'Self Assessment',
+            'hasPart' => $quizzes->take(15)->map(function ($q) {
+                return [
+                    '@type' => 'Question',
+                    'eduQuestionType' => 'Multiple choice',
+                    'name' => trim(preg_replace('/\s+/', ' ', strip_tags($q->title))),
+                    'suggestedAnswer' => collect([$q->option_a, $q->option_b, $q->option_c, $q->option_d])->filter()->map(function ($opt) {
+                        return [
+                            '@type' => 'Answer',
+                            'text' => (string) $opt,
+                        ];
+                    })->values()->all(),
+                ];
+            })->values()->all(),
+        ],
+        [
+            '@type' => 'BreadcrumbList',
+            'itemListElement' => [
+                [
+                    '@type' => 'ListItem',
+                    'position' => 1,
+                    'name' => 'Home',
+                    'item' => route('homepage'),
+                ],
+                [
+                    '@type' => 'ListItem',
+                    'position' => 2,
+                    'name' => $type->type,
+                    'item' => $quizUrl,
+                ],
+            ],
+        ],
+    ],
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+</script>
+@endsection
 
 @section('css')
     <style>

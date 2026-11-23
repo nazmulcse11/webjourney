@@ -1,8 +1,8 @@
 @extends('frontend.layouts.master')
-@section('site_title'){{ 'WebJourney - Contact Us'}}@endsection
-@section('description',get_static_option('description'))
+@section('site_title'){{ 'Contact Us - WebJourney'}}@endsection
+@section('description'){{ 'Get in touch with the WebJourney team for tutorial questions, feedback, collaborations, or custom web development inquiries.' }}@endsection
 @section('og_url'){{ route('contact.us') }}@endsection
-@section('og_title','WebJourney - Contact Us')
+@section('og_title','Contact Us - WebJourney')
 @section('og_description'){{ 'You can contact us using the contact information or via contact form.'}}@endsection
 @section('og_image'){{asset('frontend/images/web-journey-your-web-tutor.png')}}@endsection
 

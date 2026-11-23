@@ -1,10 +1,15 @@
 @extends('frontend.layouts.master')
-    @section('site_title'){{ 'WebJourney - '.$subcategory->name. ' Tutorials'}}@endsection
-    @section('description',get_static_option('description'))
-    @section('og_url'){{ route('subcategory.tutorial',$subcategory->slug) }}@endsection
-    @section('og_title','Webjourney')
-    @section('og_description'){{ 'Our '.$subcategory->name. ' tutorial helps you to learn some amazing topics.'}}@endsection
-    @section('og_image'){{asset('frontend/images/web-journey-your-web-tutor.png')}}@endsection
+    @php
+        $subTitle = $subcategory->name . ' Tutorials & Practical Guides - WebJourney';
+        $subDesc = 'Master ' . $subcategory->name . ' with practical tutorials, working code snippets, and step-by-step web development guides on WebJourney.';
+        $subUrl = route('subcategory.tutorial', $subcategory->slug);
+    @endphp
+    @section('site_title'){{ $subTitle }}@endsection
+    @section('description'){{ $subDesc }}@endsection
+    @section('og_url'){{ $subUrl }}@endsection
+    @section('og_title'){{ $subTitle }}@endsection
+    @section('og_description'){{ $subDesc }}@endsection
+    @section('og_image'){{ asset('frontend/images/web-journey-your-web-tutor.png') }}@endsection
 @section('css')
     <style>
         li.page-item.active {

@@ -1,6 +1,7 @@
 @extends('frontend.layouts.master')
 
-@section('site_title','WebJourney - PHP, Laravel, MySql, Javascript, Jquery, Vue Js, Tutorial')
+@section('robots', 'noindex, follow')
+@section('site_title','Search Tutorials - WebJourney')
 
 @section('css')
     <style>

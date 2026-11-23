@@ -3,16 +3,71 @@
 <head>
     <!--=============== basic  ===============-->
     <meta charset="UTF-8">
-    <title>@yield('site_title')</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="robots" content="index, follow"/>
-    @php $currentURL = URL::current(); $site_url = url('/'); @endphp
+    @php
+        $currentURL = URL::current();
+        $site_url = url('/');
+        $canonicalUrl = (request()->filled('page') && (int) request('page') > 1)
+            ? $currentURL . '?page=' . (int) request('page')
+            : $currentURL;
+        $defaultDescription = get_static_option('description') ?: 'WebJourney provides practical PHP, Laravel, MySQL, JavaScript, jQuery, Vue.js, React, and Web Development tutorials and interactive quizzes.';
+        $defaultOgImage = asset('frontend/images/web-journey-your-web-tutor.png');
+    @endphp
+    <title>@yield('site_title', 'WebJourney - PHP, Laravel, MySQL, JavaScript & Web Development Tutorials')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="@yield('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')"/>
+    <link rel="canonical" href="@yield('canonical', $canonicalUrl)" />
     @if($currentURL == $site_url)<meta name="keywords" content="@yield('keywords')"/>@endif
-    <meta name="description" content="@yield('description')"/>
-    <meta property="og:url" content="@yield('og_url')">
-    <meta property="og:title" content="@yield('og_title')">
-    <meta property="og:description" content="@yield('og_description')">
-    <meta property="og:image" content="@yield('og_image')">
+    <meta name="description" content="@yield('description', $defaultDescription)"/>
+    <meta property="og:site_name" content="WebJourney">
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:url" content="@yield('og_url', $canonicalUrl)">
+    <meta property="og:title" content="@yield('og_title', 'WebJourney')">
+    <meta property="og:description" content="@yield('og_description', $defaultDescription)">
+    <meta property="og:image" content="@yield('og_image', $defaultOgImage)">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('og_title', 'WebJourney')">
+    <meta name="twitter:description" content="@yield('og_description', $defaultDescription)">
+    <meta name="twitter:image" content="@yield('og_image', $defaultOgImage)">
+    @if($currentURL == $site_url)
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@graph' => [
+            [
+                '@type' => 'Organization',
+                '@id' => $site_url . '/#organization',
+                'name' => 'WebJourney',
+                'url' => $site_url,
+                'logo' => [
+                    '@type' => 'ImageObject',
+                    'url' => $defaultOgImage,
+                ],
+                'sameAs' => array_values(array_filter([
+                    'https://www.facebook.com/WebJourneybd',
+                    'https://www.youtube.com/c/WebJourneybd',
+                    'https://stackoverflow.com/users/12187513/nazmul-hoque',
+                    get_static_option('github'),
+                    get_static_option('linkedin'),
+                ])),
+            ],
+            [
+                '@type' => 'WebSite',
+                '@id' => $site_url . '/#website',
+                'url' => $site_url,
+                'name' => 'WebJourney',
+                'description' => $defaultDescription,
+                'publisher' => ['@id' => $site_url . '/#organization'],
+                'potentialAction' => [
+                    '@type' => 'SearchAction',
+                    'target' => $site_url . '/search/label/search-string?search_string={search_term_string}',
+                    'query-input' => 'required name=search_term_string',
+                ],
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+    </script>
+    @endif
+    @yield('schema')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--=============== css  ===============-->
@@ -46,6 +101,48 @@
         }
         .card-post-content h2 a:hover {
             color: #5ECFB1 !important;
+        }
+        .post-grid-container {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            align-items: stretch !important;
+        }
+        .post-grid-container > .article-masonry {
+            height: auto !important;
+            display: flex !important;
+            float: none !important;
+            margin-bottom: 24px !important;
+        }
+        .post-grid-container > .article-masonry > .card-post {
+            width: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            float: none !important;
+        }
+        .post-grid-container > .article-masonry .card-post-content {
+            flex: 1 1 auto !important;
+            display: flex !important;
+            flex-direction: column !important;
+            float: none !important;
+            width: 100% !important;
+        }
+        .post-grid-container > .article-masonry .card-post-content .post-author {
+            margin-top: auto !important;
+        }
+        .post-grid-container > .pagination-wrapper {
+            width: 100% !important;
+            flex: 0 0 100% !important;
+            clear: both !important;
+            float: left !important;
+            margin-top: 20px !important;
+            padding-top: 10px !important;
+        }
+        .post-grid-container .pagination {
+            margin-top: 0 !important;
+            float: none !important;
+            display: flex !important;
+            justify-content: center !important;
+            flex-wrap: wrap !important;
         }
     </style>
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/css/prism.css') }}">

@@ -1,8 +1,8 @@
 @extends('frontend.layouts.master')
-@section('site_title'){{ 'WebJourney - Privacy Policy'}}@endsection
-@section('description',get_static_option('description'))
+@section('site_title'){{ 'Privacy Policy - WebJourney'}}@endsection
+@section('description'){{ 'Read the WebJourney Privacy Policy covering how we protect your personal data, cookies usage, and third-party services on webjourney.dev.' }}@endsection
 @section('og_url'){{ route('privacy.policy') }}@endsection
-@section('og_title','WebJourney - Privacy Policy')
+@section('og_title','Privacy Policy - WebJourney')
 @section('og_description'){{ 'We assure that your privacy is fully protected. This policy covers the actions when you visit WebJourney.info website'}}@endsection
 @section('og_image'){{asset('frontend/images/web-journey-your-web-tutor.png')}}@endsection
 

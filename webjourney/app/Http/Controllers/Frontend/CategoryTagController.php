@@ -15,7 +15,7 @@ class CategoryTagController extends Controller
     {
         $category = Category::where('slug',$slug)->first();
         if($category){
-            $posts = $category->posts()->status()->paginate(8);
+            $posts = $category->posts()->status()->latest('updated_at')->paginate(8);
             return view('frontend.pages.category.post_by_category',compact('posts','category'));
         }
         abort(404);
@@ -25,7 +25,7 @@ class CategoryTagController extends Controller
     {
         $subcategory = Subcategory::where('slug',$slug)->first();
         if($subcategory){
-            $posts = $subcategory->posts()->status()->paginate(8);
+            $posts = $subcategory->posts()->status()->latest('updated_at')->paginate(8);
             return view('frontend.pages.category.post_by_subcategory',compact('posts','subcategory'));
         }
         abort(404);
@@ -34,8 +34,10 @@ class CategoryTagController extends Controller
     public function tag_tutorial($slug)
     {
         $tag = Tag::where('slug',$slug)->first();
-        $posts = $tag->posts()->status()->paginate(8);
-        return view('frontend.pages.tag.post_by_tag',compact('posts','tag'));
-
+        if($tag){
+            $posts = $tag->posts()->status()->latest('updated_at')->paginate(8);
+            return view('frontend.pages.tag.post_by_tag',compact('posts','tag'));
+        }
+        abort(404);
     }
 }

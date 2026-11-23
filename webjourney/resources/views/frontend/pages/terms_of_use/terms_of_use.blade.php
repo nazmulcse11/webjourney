@@ -1,8 +1,8 @@
 @extends('frontend.layouts.master')
-@section('site_title'){{ 'WebJourney - Terms of use'}}@endsection
-@section('description',get_static_option('description'))
+@section('site_title'){{ 'Terms of Use - WebJourney'}}@endsection
+@section('description'){{ 'Review the Terms of Use and conditions for accessing WebJourney tutorials, quizzes, courses, and web development resources on webjourney.dev.' }}@endsection
 @section('og_url'){{ route('terms.of.use') }}@endsection
-@section('og_title','WebJourney - Terms of use')
+@section('og_title','Terms of Use - WebJourney')
 @section('og_description'){{ 'WebJourney welcomes you for using our online information service. By using our service, you are agreeing with our terms and conditions.'}}@endsection
 @section('og_image'){{asset('frontend/images/web-journey-your-web-tutor.png')}}@endsection
 

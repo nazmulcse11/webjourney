@@ -41,3 +41,37 @@
     <!--wrapper end -->
 @endsection
 
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            if (window.location.search.indexOf('page=') !== -1 && window.history && window.history.replaceState) {
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+
+            $(document).on('click', '#home-post-container .pagination a', function (e) {
+                e.preventDefault();
+                var href = $(this).attr('href');
+                if (!href || href === '#') {
+                    return;
+                }
+                var pageMatch = href.match(/[?&]page=(\d+)/);
+                var page = pageMatch ? pageMatch[1] : 1;
+
+                $.ajax({
+                    url: "{{ route('homepage') }}?page=" + page,
+                    method: 'GET',
+                    beforeSend: function () {
+                        $('#home-post-container').css('opacity', '0.5');
+                    },
+                    success: function (res) {
+                        $('#home-post-container').replaceWith(res);
+                        $('html, body').stop().animate({
+                            scrollTop: 0
+                        }, 350);
+                    }
+                });
+            });
+        });
+    </script>
+@endsection
+

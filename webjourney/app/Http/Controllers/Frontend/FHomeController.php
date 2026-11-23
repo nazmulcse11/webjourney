@@ -15,12 +15,17 @@ use Illuminate\Support\Facades\DB;
 
 class FHomeController extends Controller
 {
-    public function home_page()
+    public function home_page(Request $request)
     {
-         $posts = Post::with(['post_like','comments','post_favourite'])
-            ->select(['id','image','title','slug','description','view','created_at'])
+        $posts = Post::with(['post_like','comments','post_favourite'])
+            ->select(['id','image','title','slug','description','meta_description','view','created_at','updated_at'])
             ->where(['status'=>'publish','type'=>'post'])
-            ->latest()->take(8)->get();
+            ->latest()->paginate(8);
+
+        if ($request->ajax()) {
+            return view('frontend.pages.partials.post_markup', compact('posts'))->render();
+        }
+
         return view('frontend.pages.home.home',compact('posts'));
     }
 
@@ -85,10 +90,49 @@ class FHomeController extends Controller
 
     public function post_details($slug)
     {
-        $post_details = Post::with('tags','post_like','post_favourite','comments')->where(['status'=>'publish','type'=>'post'])->where('slug',$slug)->first();
+        $post_details = Post::with('categories','tags','post_like','post_favourite','comments')
+            ->where(['status'=>'publish','type'=>'post'])
+            ->where('slug',$slug)
+            ->first();
 
         if($post_details){
-            $random_posts = Post::select('id', 'title', 'slug')->where('id', '!=', $post_details->id)->where(['status'=>'publish','type'=>'post'])->inRandomOrder()->take(5)->get();
+            $categoryIds = $post_details->categories->pluck('id')->toArray();
+            $tagIds = $post_details->tags->pluck('id')->toArray();
+
+            $random_posts = Post::select('id', 'title', 'slug')
+                ->where('id', '!=', $post_details->id)
+                ->where(['status'=>'publish','type'=>'post'])
+                ->when(!empty($categoryIds) || !empty($tagIds), function ($query) use ($categoryIds, $tagIds) {
+                    $query->where(function ($q) use ($categoryIds, $tagIds) {
+                        if (!empty($categoryIds)) {
+                            $q->whereHas('categories', function ($cq) use ($categoryIds) {
+                                $cq->whereIn('categories.id', $categoryIds);
+                            });
+                        }
+                        if (!empty($tagIds)) {
+                            $q->orWhereHas('tags', function ($tq) use ($tagIds) {
+                                $tq->whereIn('tags.id', $tagIds);
+                            });
+                        }
+                    });
+                })
+                ->orderByDesc('view')
+                ->latest('updated_at')
+                ->take(6)
+                ->get();
+
+            if ($random_posts->count() < 5) {
+                $excludeIds = array_merge([$post_details->id], $random_posts->pluck('id')->toArray());
+                $fallback_posts = Post::select('id', 'title', 'slug')
+                    ->whereNotIn('id', $excludeIds)
+                    ->where(['status'=>'publish','type'=>'post'])
+                    ->orderByDesc('view')
+                    ->latest('updated_at')
+                    ->take(5 - $random_posts->count())
+                    ->get();
+                $random_posts = $random_posts->concat($fallback_posts);
+            }
+
             DB::table('posts')
                 ->where('id', $post_details->id)
                 ->increment('view', 1);

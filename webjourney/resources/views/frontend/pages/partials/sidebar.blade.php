@@ -17,12 +17,10 @@
     <!--box-widget-wrap -->
     <div class="box-widget-wrap fl-wrap fixed-bar fixbar-action">
         
-         <!--sidebar display responsive ads -->
+        <!--sidebar display responsive ads -->
         <div class="box-widget-item fl-wrap">
             <div class="box-widget widget-posts">
                 <div class="box-widget-content">
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8673885649672159"
-                         crossorigin="anonymous"></script>
                     <!-- Sidebar Display Vertical Responsive Ads -->
                     <ins class="adsbygoogle"
                          style="display:block"

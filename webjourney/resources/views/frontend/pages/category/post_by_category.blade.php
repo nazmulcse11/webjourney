@@ -1,10 +1,37 @@
 @extends('frontend.layouts.master')
-    @section('site_title'){{ 'WebJourney - '.$category->name. ' Tutorials'}}@endsection
-    @section('description',get_static_option('description'))
-    @section('og_url'){{ route('category.tutorial',$category->slug) }}@endsection
-    @section('og_title','Webjourney')
-    @section('og_description'){{ 'Our '.$category->name. ' tutorial helps you to learn some amazing topics.'}}@endsection
-    @section('og_image'){{asset('frontend/images/web-journey-your-web-tutor.png')}}@endsection
+    @php
+        $catTitle = $category->name . ' Tutorials, Guides & Code Examples - WebJourney';
+        $catDesc = 'Learn ' . $category->name . ' with step-by-step tutorials, real-world code examples, troubleshooting guides, and best practices on WebJourney.';
+        $catUrl = route('category.tutorial', $category->slug);
+    @endphp
+    @section('site_title'){{ $catTitle }}@endsection
+    @section('description'){{ $catDesc }}@endsection
+    @section('og_url'){{ $catUrl }}@endsection
+    @section('og_title'){{ $catTitle }}@endsection
+    @section('og_description'){{ $catDesc }}@endsection
+    @section('og_image'){{ asset('frontend/images/web-journey-your-web-tutor.png') }}@endsection
+    @section('schema')
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            [
+                '@type' => 'ListItem',
+                'position' => 1,
+                'name' => 'Home',
+                'item' => route('homepage'),
+            ],
+            [
+                '@type' => 'ListItem',
+                'position' => 2,
+                'name' => $category->name . ' Tutorials',
+                'item' => $catUrl,
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+    </script>
+    @endsection
 @section('css')
     <style>
         li.page-item.active {

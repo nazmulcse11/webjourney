@@ -1,7 +1,7 @@
 <!--blog content -->
-<div class="col-md-8">
+<div class="col-md-8" id="home-post-container">
     <!--post-container -->
-    <div class="post-container fl-wrap">
+    <div class="post-container post-grid-container fl-wrap">
         @foreach($posts as $post)
             <!--article-masonry -->
             <div class="article-masonry">
@@ -9,13 +9,13 @@
                     <div class="card-post-img fl-wrap">
                         @if($post->image !=NULL)
                             <a href="{{ route('post.details',$post->slug) }}">
-                                <img src="{{ asset('images/post/'.$post->image) ?? '' }}" alt="{{ $post->title }}">
+                                <img src="{{ asset('images/post/'.$post->image) ?? '' }}" alt="{{ $post->title }}" loading="lazy">
                             </a>
                         @endif
                     </div>
                     <div class="card-post-content fl-wrap">
                         <h2><a href="{{ route('post.details',$post->slug) }}">{{ $post->title }}</a></h2>
-                        <p>{!! Str::limit($post->description,150) !!}</p>
+                        <p>{{ Str::limit(!empty($post->meta_description) ? $post->meta_description : trim(preg_replace('/\s+/', ' ', strip_tags($post->description))), 160) }}</p>
                         <div class="post-author">
                             <a href="{{ route('post.details',$post->slug) }}">
                                 <span>{{ __('Read More...')  }}</span>
@@ -77,7 +77,7 @@
                             <div class="list-widget-social">
                                 <ul>
                                     <li><p>{{ __('Share This:') }}</p></li>
-                                    {!! single_post_share(route('post.details',['id'=>$post->id, 'slug'=>$post->slug]),$post->title,$post->image) !!}
+                                    {!! single_post_share(route('post.details', $post->slug), $post->title, $post->image) !!}
                                 </ul>
                             </div>
                         </div>
@@ -86,7 +86,11 @@
             </div>
             <!--article-masonry end -->
         @endforeach
-
+        @if(method_exists($posts, 'links'))
+            <div class="pagination-wrapper fl-wrap">
+                {{ $posts->links() }}
+            </div>
+        @endif
     </div>
     <!--post-container end -->
 </div>

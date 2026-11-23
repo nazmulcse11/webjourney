@@ -12,6 +12,9 @@ class FQuizController extends Controller
     public function quiz_tutorial($slug)
     {
         $type = QuizType::where('status',1)->where('slug',$slug)->first();
+        if (!$type) {
+            abort(404);
+        }
         $quizzes = Quiz::where('quiz_type_id',$type->id)->where('status',1)->get();
         return view('frontend.pages.quiz.html_quiz',compact('quizzes','type'));
     }

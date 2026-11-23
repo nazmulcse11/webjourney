@@ -1,10 +1,84 @@
 @extends('frontend.layouts.master')
-    @section('site_title'){{ $post_details->title }}@endsection
-    @section('description'){{ $post_details->meta_description }}@endsection
-    @section('og_url'){{ route('post.details',$post_details->slug) }}@endsection
-    @section('og_title'){{ $post_details->title }}@endsection
-    @section('og_description'){{ $post_details->meta_description }}@endsection
-    @section('og_image'){{asset('images/post/'.$post_details->image)}}@endsection
+    @php
+        $seoTitle = !empty($post_details->meta_title) ? $post_details->meta_title : $post_details->title;
+        $cleanExcerpt = Str::limit(trim(preg_replace('/\s+/', ' ', strip_tags($post_details->description))), 155);
+        $seoDescription = !empty($post_details->meta_description) ? $post_details->meta_description : $cleanExcerpt;
+        $postUrl = route('post.details', $post_details->slug);
+        $postImage = !empty($post_details->image)
+            ? asset('images/post/' . $post_details->image)
+            : asset('frontend/images/web-journey-your-web-tutor.png');
+        $primaryCategory = $post_details->categories->first();
+    @endphp
+    @section('site_title'){{ $seoTitle }}@endsection
+    @section('description'){{ $seoDescription }}@endsection
+    @section('canonical'){{ $postUrl }}@endsection
+    @section('og_type', 'article')
+    @section('og_url'){{ $postUrl }}@endsection
+    @section('og_title'){{ $seoTitle }}@endsection
+    @section('og_description'){{ $seoDescription }}@endsection
+    @section('og_image'){{ $postImage }}@endsection
+    @section('schema')
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@graph' => [
+            [
+                '@type' => 'TechArticle',
+                '@id' => $postUrl . '#article',
+                'mainEntityOfPage' => [
+                    '@type' => 'WebPage',
+                    '@id' => $postUrl,
+                ],
+                'headline' => $seoTitle,
+                'description' => $seoDescription,
+                'image' => [$postImage],
+                'datePublished' => optional($post_details->created_at)->toAtomString(),
+                'dateModified' => optional($post_details->updated_at ?? $post_details->created_at)->toAtomString(),
+                'author' => [
+                    '@type' => 'Person',
+                    'name' => 'Nazmul Hoque',
+                    'url' => route('about.us'),
+                ],
+                'publisher' => [
+                    '@type' => 'Organization',
+                    'name' => 'WebJourney',
+                    'url' => url('/'),
+                    'logo' => [
+                        '@type' => 'ImageObject',
+                        'url' => asset('frontend/images/web-journey-your-web-tutor.png'),
+                    ],
+                ],
+                'articleSection' => $primaryCategory ? $primaryCategory->name : 'Web Development',
+                'keywords' => $post_details->tags->pluck('name')->implode(', '),
+            ],
+            [
+                '@type' => 'BreadcrumbList',
+                '@id' => $postUrl . '#breadcrumb',
+                'itemListElement' => array_values(array_filter([
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 1,
+                        'name' => 'Home',
+                        'item' => route('homepage'),
+                    ],
+                    $primaryCategory ? [
+                        '@type' => 'ListItem',
+                        'position' => 2,
+                        'name' => $primaryCategory->name,
+                        'item' => route('category.tutorial', $primaryCategory->slug),
+                    ] : null,
+                    [
+                        '@type' => 'ListItem',
+                        'position' => $primaryCategory ? 3 : 2,
+                        'name' => $post_details->title,
+                        'item' => $postUrl,
+                    ],
+                ])),
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+    </script>
+    @endsection
     
     @section('css')
         <style>
@@ -335,8 +409,8 @@
                                             <div class="list-widget-social">
                                                 <ul>
                                                     <li><p>{{ __('Share This:') }}</p></li>
-                                                  @php  $post_img = !empty($post_details) ? $post_details['img_url'] : '';@endphp
-                                                    {!! single_post_share(route('post.details',['id'=>$post_details->id, 'slug'=>$post_details->slug]),$post_details->title,$post_img) !!}
+                                                  @php $post_img = !empty($post_details->image) ? asset('images/post/'.$post_details->image) : ''; @endphp
+                                                    {!! single_post_share(route('post.details', $post_details->slug), $post_details->title, $post_img) !!}
                                                 </ul>
                                             </div>
                                         </div>

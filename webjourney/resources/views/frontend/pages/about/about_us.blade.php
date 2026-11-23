@@ -1,7 +1,8 @@
 @extends('frontend.layouts.master')
-@section('site_title'){{ 'WebJourney - About Us'}}@endsection
+@section('site_title'){{ 'About Us - WebJourney'}}@endsection
+@section('description'){{ 'Learn about WebJourney, our mission to provide free practical PHP, Laravel, JavaScript, and modern web development tutorials, and our web development services.' }}@endsection
 @section('og_url'){{ route('about.us') }}@endsection
-@section('og_title','WebJourney - About Us')
+@section('og_title','About Us - WebJourney')
 @section('og_description'){{ 'WebJourney makes tutorial such a way so that everyone can learn and build their career in web development.'}}@endsection
 @section('og_image'){{asset('frontend/images/web-journey-your-web-tutor.png')}}@endsection
 @section('content')
