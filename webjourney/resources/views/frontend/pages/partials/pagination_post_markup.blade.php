@@ -36,7 +36,6 @@
                         <div class="box-widget-item fl-wrap">
                             <div class="list-widget-social">
                                 <ul>
-                                    <li><p>{{ __('Share This:') }}</p></li>
                                     {!! single_post_share(route('post.details', $post->slug), $post->title, $post->image) !!}
                                 </ul>
                             </div>
