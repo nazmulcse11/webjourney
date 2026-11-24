@@ -19,8 +19,7 @@ class FHomeController extends Controller
 {
     public function home_page(Request $request)
     {
-        $posts = Post::with(['post_like','comments','post_favourite'])
-            ->select(['id','image','title','slug','description','meta_description','view','created_at','updated_at'])
+        $posts = Post::select(['id','image','title','slug','description','meta_description','view','created_at','updated_at'])
             ->where(['status'=>'publish','type'=>'post'])
             ->latest()->paginate(8);
 
