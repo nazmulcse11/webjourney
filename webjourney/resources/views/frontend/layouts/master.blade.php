@@ -105,29 +105,12 @@
         .post-grid-container {
             display: flex !important;
             flex-wrap: wrap !important;
-            align-items: stretch !important;
+            align-items: flex-start !important;
         }
         .post-grid-container > .article-masonry {
             height: auto !important;
-            display: flex !important;
             float: none !important;
             margin-bottom: 24px !important;
-        }
-        .post-grid-container > .article-masonry > .card-post {
-            width: 100% !important;
-            display: flex !important;
-            flex-direction: column !important;
-            float: none !important;
-        }
-        .post-grid-container > .article-masonry .card-post-content {
-            flex: 1 1 auto !important;
-            display: flex !important;
-            flex-direction: column !important;
-            float: none !important;
-            width: 100% !important;
-        }
-        .post-grid-container > .article-masonry .card-post-content .post-author {
-            margin-top: auto !important;
         }
         .post-grid-container > .pagination-wrapper {
             width: 100% !important;
