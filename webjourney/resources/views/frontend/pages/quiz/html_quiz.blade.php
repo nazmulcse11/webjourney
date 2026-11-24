@@ -1,7 +1,9 @@
 @extends('frontend.layouts.master')
 @php
     $quizCount = $quizzes->count();
-    $quizTitle = $type->type . ' Online Test & MCQ Practice (' . $quizCount . ' Questions) - WebJourney';
+    $quizTitle = mb_strlen($type->type) > 42
+        ? $type->type . ' (' . $quizCount . ' MCQs) - WebJourney'
+        : $type->type . ' Online Test & MCQ Practice (' . $quizCount . ' Questions) - WebJourney';
     $quizDescription = !empty($type->description)
         ? $type->description
         : 'Test your ' . $type->type . ' knowledge with ' . $quizCount . ' interactive multiple-choice questions (MCQs), instant score feedback, and detailed answer explanations on WebJourney.';
@@ -892,6 +894,26 @@
                                                 </div>
                                             </a>
                                         </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @endif
+
+                            @if(!empty($related_posts) && $related_posts->count() > 0)
+                            <div style="background-color: #ffffff !important; border-radius: 16px !important; padding: 24px !important; margin-top: 20px !important; margin-bottom: 25px !important; border: 1px solid #e2e8f0 !important; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important; clear: both !important; display: block !important; width: 100% !important; text-align: left !important; box-sizing: border-box !important;">
+                                <div style="text-align: left !important; margin-bottom: 16px !important; padding-bottom: 12px !important; border-bottom: 2px solid #f1f5f9 !important; display: block !important; width: 100% !important;">
+                                    <h3 style="font-size: 19px !important; font-weight: 800 !important; color: #0f172a !important; margin: 0 0 4px 0 !important; border: none !important; padding: 0 !important; text-align: left !important; line-height: 1.3 !important;">
+                                        📚 {{ __('Recommended Tutorials & Study Guides') }}
+                                    </h3>
+                                    <p style="font-size: 13.5px !important; color: #64748b !important; margin: 0 !important; font-weight: 500 !important; text-align: left !important;">
+                                        {{ __('Sharpen your concepts with these step-by-step tutorials and real-world code guides.') }}
+                                    </p>
+                                </div>
+                                <div style="display: flex !important; flex-wrap: wrap !important; gap: 10px !important; width: 100% !important;">
+                                    @foreach($related_posts as $rPost)
+                                        <a href="{{ route('post.details', $rPost->slug) }}" style="flex: 1 1 calc(50% - 10px) !important; min-width: 240px !important; background: #f8fafc !important; border: 1px solid #e2e8f0 !important; border-radius: 10px !important; padding: 12px 14px !important; color: #183c7d !important; font-size: 14px !important; font-weight: 600 !important; text-decoration: none !important; line-height: 1.4 !important; text-align: left !important; display: block !important;">
+                                            <i class="fal fa-file-alt" style="margin-right: 6px; color: #4f46e5;"></i> {{ $rPost->title }}
+                                        </a>
                                     @endforeach
                                 </div>
                             </div>

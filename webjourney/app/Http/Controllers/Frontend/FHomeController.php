@@ -8,10 +8,12 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\PostComment;
 use App\Models\PostLike;
+use App\Models\QuizType;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class FHomeController extends Controller
 {
@@ -133,12 +135,238 @@ class FHomeController extends Controller
                 $random_posts = $random_posts->concat($fallback_posts);
             }
 
+            // Previous & Next tutorial navigation (preferring same category)
+            $previous_post = Post::select('id', 'title', 'slug')
+                ->where(['status' => 'publish', 'type' => 'post'])
+                ->where('id', '<', $post_details->id)
+                ->when(!empty($categoryIds), function ($q) use ($categoryIds) {
+                    $q->whereHas('categories', function ($cq) use ($categoryIds) {
+                        $cq->whereIn('categories.id', $categoryIds);
+                    });
+                })
+                ->orderByDesc('id')
+                ->first();
+
+            if (!$previous_post) {
+                $previous_post = Post::select('id', 'title', 'slug')
+                    ->where(['status' => 'publish', 'type' => 'post'])
+                    ->where('id', '<', $post_details->id)
+                    ->orderByDesc('id')
+                    ->first();
+            }
+
+            $next_post = Post::select('id', 'title', 'slug')
+                ->where(['status' => 'publish', 'type' => 'post'])
+                ->where('id', '>', $post_details->id)
+                ->when(!empty($categoryIds), function ($q) use ($categoryIds) {
+                    $q->whereHas('categories', function ($cq) use ($categoryIds) {
+                        $cq->whereIn('categories.id', $categoryIds);
+                    });
+                })
+                ->orderBy('id')
+                ->first();
+
+            if (!$next_post) {
+                $next_post = Post::select('id', 'title', 'slug')
+                    ->where(['status' => 'publish', 'type' => 'post'])
+                    ->where('id', '>', $post_details->id)
+                    ->orderBy('id')
+                    ->first();
+            }
+
+            // Match the best interactive quiz for this tutorial
+            $matched_quiz = $this->findMatchingQuiz($post_details);
+
+            // Parse description for Auto-TOC anchor IDs and FAQPage JSON-LD Schema
+            [$processed_description, $toc_items, $faq_items] = $this->parseDescriptionForSeo(
+                (string) $post_details->description,
+                (string) $post_details->title,
+                (string) $post_details->slug
+            );
+            $post_details->description = $processed_description;
+
             DB::table('posts')
                 ->where('id', $post_details->id)
                 ->increment('view', 1);
-            return view('frontend.pages.post.post_details',compact('post_details','random_posts'));
+            return view('frontend.pages.post.post_details', compact(
+                'post_details',
+                'random_posts',
+                'previous_post',
+                'next_post',
+                'matched_quiz',
+                'toc_items',
+                'faq_items'
+            ));
         }
         abort(404);
+    }
+
+    private function findMatchingQuiz(Post $post): ?QuizType
+    {
+        $quizTypes = QuizType::where('status', 1)
+            ->whereHas('quizzes', function ($q) {
+                $q->where('status', 1);
+            })
+            ->withCount(['quizzes' => function ($q) {
+                $q->where('status', 1);
+            }])
+            ->get();
+
+        if ($quizTypes->isEmpty()) {
+            return null;
+        }
+
+        $haystack = strtolower(
+            $post->title . ' ' .
+            $post->slug . ' ' .
+            $post->categories->pluck('name')->implode(' ') . ' ' .
+            $post->tags->pluck('name')->implode(' ')
+        );
+
+        $keywordMap = [
+            'jquery'     => 'jquery',
+            'select2'    => 'jquery',
+            'next.js'    => 'next',
+            'nextjs'     => 'next',
+            'react'      => 'react',
+            'typescript' => 'typescript',
+            'vue'        => 'vue',
+            'flutter'    => 'flutter',
+            'mysql'      => 'mysql',
+            'sql'        => 'mysql',
+            'laragon'    => 'mysql',
+            'laravel'    => 'laravel',
+            'javascript' => 'javascript',
+            'ajax'       => 'javascript',
+            'css'        => 'css',
+            'bootstrap'  => 'css',
+            'html'       => 'html',
+            'php'        => 'php',
+        ];
+
+        foreach ($keywordMap as $keyword => $quizSlugPart) {
+            if (strpos($haystack, $keyword) !== false) {
+                $found = $quizTypes->first(function ($qt) use ($quizSlugPart) {
+                    return stripos($qt->slug, $quizSlugPart) !== false || stripos($qt->type, $quizSlugPart) !== false;
+                });
+                if ($found) {
+                    return $found;
+                }
+            }
+        }
+
+        return $quizTypes->first(function ($qt) {
+            return stripos($qt->slug, 'laravel') !== false;
+        }) ?? $quizTypes->first();
+    }
+
+    private function parseDescriptionForSeo(string $html, string $title, string $slug): array
+    {
+        $tocItems = [];
+        $faqItems = [];
+        $usedIds = [];
+
+        $ignoredHeadings = [
+            'final thoughts',
+            'conclusion',
+            'summary',
+            'tags',
+            'frequently asked questions',
+            'faq',
+            'faqs',
+        ];
+
+        // Inject deterministic anchor IDs into h2 and h3 headings and collect TOC items
+        $processedHtml = preg_replace_callback(
+            '/<h([23])([^>]*)>(.*?)<\/h\1>/is',
+            function ($matches) use (&$tocItems, &$usedIds, $ignoredHeadings) {
+                $level = (int) $matches[1];
+                $attrs = $matches[2];
+                $innerHtml = $matches[3];
+                $plainText = trim(html_entity_decode(strip_tags($innerHtml), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                $plainText = preg_replace('/\s+/', ' ', $plainText);
+
+                if ($plainText === '' || mb_strlen($plainText) < 3) {
+                    return $matches[0];
+                }
+
+                if (preg_match('/\bid=["\']([^"\']+)["\']/i', $attrs, $idMatch)) {
+                    $anchorId = $idMatch[1];
+                } else {
+                    $baseSlug = Str::slug(Str::limit($plainText, 60, ''));
+                    if ($baseSlug === '') {
+                        $baseSlug = 'section-' . (count($tocItems) + 1);
+                    }
+                    $anchorId = $baseSlug;
+                    $counter = 2;
+                    while (in_array($anchorId, $usedIds, true)) {
+                        $anchorId = $baseSlug . '-' . $counter;
+                        $counter++;
+                    }
+                    $attrs .= ' id="' . $anchorId . '"';
+                }
+
+                $usedIds[] = $anchorId;
+                $tocItems[] = [
+                    'id'    => $anchorId,
+                    'text'  => $plainText,
+                    'level' => $level,
+                ];
+
+                return '<h' . $level . $attrs . '>' . $innerHtml . '</h' . $level . '>';
+            },
+            $html
+        );
+
+        // Extract FAQ items from question headings or interview question posts
+        $isInterviewOrFaqPost = stripos($slug, 'interview-question') !== false
+            || stripos($title, 'interview question') !== false;
+
+        $segments = preg_split('/(<h[23][^>]*>.*?<\/h[23]>)/is', $processedHtml, -1, PREG_SPLIT_DELIM_CAPTURE);
+        $inFaqSection = false;
+
+        for ($i = 1; $i < count($segments); $i += 2) {
+            $headingHtml = $segments[$i];
+            $followingHtml = $segments[$i + 1] ?? '';
+
+            $headingText = trim(html_entity_decode(strip_tags($headingHtml), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+            $headingText = preg_replace('/\s+/', ' ', $headingText);
+            $lowerHeading = strtolower($headingText);
+
+            if (in_array($lowerHeading, ['frequently asked questions', 'faq', 'faqs'], true)) {
+                $inFaqSection = true;
+                continue;
+            }
+
+            if (in_array($lowerHeading, $ignoredHeadings, true)) {
+                continue;
+            }
+
+            $isQuestion = substr($headingText, -1) === '?'
+                || $inFaqSection
+                || $isInterviewOrFaqPost
+                || preg_match('/^(what|why|how|when|where|can|should|is|are|does|do)\b/i', preg_replace('/^\d+[\.\)\-\s]+/', '', $headingText));
+
+            if ($isQuestion && mb_strlen($headingText) >= 10) {
+                $answerText = trim(html_entity_decode(strip_tags($followingHtml), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                $answerText = preg_replace('/\s+/', ' ', $answerText);
+                if (mb_strlen($answerText) >= 40) {
+                    $faqItems[] = [
+                        'question' => $headingText,
+                        'answer'   => Str::limit($answerText, 450),
+                    ];
+                }
+            }
+        }
+
+        // Only emit FAQPage schema when there are at least 2 valid Q&As (max 10)
+        if (count($faqItems) < 2) {
+            $faqItems = [];
+        } else {
+            $faqItems = array_slice($faqItems, 0, 10);
+        }
+
+        return [$processedHtml, $tocItems, $faqItems];
     }
 
     public function add_comment(Request $request)
