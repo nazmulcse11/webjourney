@@ -15,6 +15,7 @@ class Post extends Model
         'type',
         'image',
         'description',
+        'faqs',
         'meta_title',
         'meta_description',
         'status',
@@ -24,6 +25,10 @@ class Post extends Model
         'like',
         'share',
         ];
+
+    protected $casts = [
+        'faqs' => 'array',
+    ];
 
     public function categories()
     {

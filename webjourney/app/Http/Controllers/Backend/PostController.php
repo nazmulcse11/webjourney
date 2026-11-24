@@ -10,13 +10,45 @@ use App\Models\PostComment;
 use App\Models\Subcategory;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use File;
 
 
 class PostController extends Controller
 {
+    private function ensureFaqsColumnExists(): void
+    {
+        if (!Schema::hasColumn('posts', 'faqs')) {
+            Schema::table('posts', function (Blueprint $table) {
+                $table->longText('faqs')->nullable()->after('description');
+            });
+        }
+    }
+
+    private function extractFaqsFromRequest(Request $request): ?array
+    {
+        $questions = $request->input('faq_questions', []);
+        $answers = $request->input('faq_answers', []);
+        $faqs = [];
+
+        if (is_array($questions)) {
+            foreach ($questions as $index => $question) {
+                $q = trim((string) $question);
+                $a = trim((string) ($answers[$index] ?? ''));
+                if ($q !== '' && $a !== '') {
+                    $faqs[] = [
+                        'question' => $q,
+                        'answer'   => $a,
+                    ];
+                }
+            }
+        }
+
+        return !empty($faqs) ? $faqs : null;
+    }
     public function post()
     {
         $posts = Post::with('categories','sub_categories')
@@ -44,6 +76,8 @@ class PostController extends Controller
                 $image->move('images/post', $imageName);
             }
 
+            $this->ensureFaqsColumnExists();
+
             $post = Post::create([
                 'title'=>$request->title,
                 'slug'=>$request->slug ?? Str::slug($request->title),
@@ -52,6 +86,7 @@ class PostController extends Controller
                 'meta_title'=>$request->meta_title,
                 'meta_description'=>$request->meta_description,
                 'description'=>$request->description,
+                'faqs'=>$this->extractFaqsFromRequest($request),
                 'admin_id'=>Auth::guard('admin')->user()->id,
                 'status'=>$request->status,
                 'video'=>$request->video,
@@ -98,6 +133,8 @@ class PostController extends Controller
                 $imageName = $post->image;
             }
 
+            $this->ensureFaqsColumnExists();
+
             Post::where('id',$id)->update([
                 'title'=>$request->title,
                 'slug'=>Str::slug($request->slug),
@@ -106,6 +143,7 @@ class PostController extends Controller
                 'meta_title'=>$request->meta_title,
                 'meta_description'=>$request->meta_description,
                 'description'=>$request->description,
+                'faqs'=>$this->extractFaqsFromRequest($request) ? json_encode($this->extractFaqsFromRequest($request), JSON_UNESCAPED_UNICODE) : null,
                 'admin_id'=>Auth::guard('admin')->user()->id,
                 'status'=>$request->status,
                 'video'=>$request->video,

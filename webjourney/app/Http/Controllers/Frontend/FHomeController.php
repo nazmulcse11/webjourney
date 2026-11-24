@@ -185,6 +185,34 @@ class FHomeController extends Controller
             );
             $post_details->description = $processed_description;
 
+            // Merge structured admin-panel FAQs (if present)
+            $custom_faqs = [];
+            $rawFaqs = $post_details->faqs;
+            if (is_string($rawFaqs)) {
+                $rawFaqs = json_decode($rawFaqs, true);
+            }
+            if (is_array($rawFaqs)) {
+                foreach ($rawFaqs as $item) {
+                    $q = trim((string) ($item['question'] ?? ''));
+                    $a = trim((string) ($item['answer'] ?? ''));
+                    if ($q !== '' && $a !== '') {
+                        $custom_faqs[] = [
+                            'question' => $q,
+                            'answer'   => $a,
+                        ];
+                    }
+                }
+            }
+
+            if (!empty($custom_faqs)) {
+                $faq_items = $custom_faqs;
+                $toc_items[] = [
+                    'id'    => 'post-faq-section',
+                    'text'  => 'Frequently Asked Questions',
+                    'level' => 2,
+                ];
+            }
+
             DB::table('posts')
                 ->where('id', $post_details->id)
                 ->increment('view', 1);
@@ -195,7 +223,8 @@ class FHomeController extends Controller
                 'next_post',
                 'matched_quiz',
                 'toc_items',
-                'faq_items'
+                'faq_items',
+                'custom_faqs'
             ));
         }
         abort(404);

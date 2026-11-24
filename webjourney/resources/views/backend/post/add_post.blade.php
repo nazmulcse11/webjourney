@@ -149,6 +149,45 @@
                                         <label for="description">{{ __('Description') }}</label>
                                         <textarea class="form-control" name="description" id="description" data-sample-preservewhitespace rows="5" placeholder="{{ __('Description') }}">{{ old('description') }}</textarea>
                                     </div>
+
+                                    <hr class="my-4">
+
+                                    <!-- FAQ Builder Section -->
+                                    <div class="faq-builder-wrapper">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <h5 class="mb-0 font-weight-bold text-primary">
+                                                    <i class="fas fa-question-circle mr-1"></i> {{ __('Frequently Asked Questions (FAQ - Optional for Google Rich Snippets)') }}
+                                                </h5>
+                                                <small class="text-muted">{{ __('Add common questions and answers related to this tutorial. These automatically generate Google FAQPage Schema and a frontend FAQ section.') }}</small>
+                                            </div>
+                                            <button type="button" class="btn btn-success btn-sm" id="add_faq_item_btn">
+                                                <i class="fas fa-plus mr-1"></i> {{ __('Add FAQ') }}
+                                            </button>
+                                        </div>
+
+                                        <div id="faq_items_container">
+                                            <div class="card card-outline card-secondary mb-3 faq-item-row">
+                                                <div class="card-body py-3">
+                                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                                        <span class="badge badge-primary faq-number-badge">FAQ #1</span>
+                                                        <button type="button" class="btn btn-outline-danger btn-xs remove-faq-item">
+                                                            <i class="fas fa-trash-alt"></i> {{ __('Remove') }}
+                                                        </button>
+                                                    </div>
+                                                    <div class="form-group mb-2">
+                                                        <label class="mb-1">{{ __('Question') }}</label>
+                                                        <input type="text" class="form-control" name="faq_questions[]" placeholder="{{ __('e.g. Is PhpStorm EAP legal to use for free?') }}">
+                                                    </div>
+                                                    <div class="form-group mb-0">
+                                                        <label class="mb-1">{{ __('Answer') }}</label>
+                                                        <textarea class="form-control" name="faq_answers[]" rows="2" placeholder="{{ __('Write a clear, direct answer (2-4 sentences recommended)...') }}"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /FAQ Builder Section -->
                                 </div>
                                 <!-- /.card-body -->
 
@@ -188,7 +227,46 @@
                 };
                 CKEDITOR.replace('description', config);
 
-                $('.select2').select2()
+                $('.select2').select2();
+
+                function renumberFaqBadges() {
+                    $('#faq_items_container .faq-item-row').each(function(idx) {
+                        $(this).find('.faq-number-badge').text('FAQ #' + (idx + 1));
+                    });
+                }
+
+                $('#add_faq_item_btn').on('click', function() {
+                    var count = $('#faq_items_container .faq-item-row').length + 1;
+                    var rowHtml = `
+                        <div class="card card-outline card-secondary mb-3 faq-item-row">
+                            <div class="card-body py-3">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge badge-primary faq-number-badge">FAQ #${count}</span>
+                                    <button type="button" class="btn btn-outline-danger btn-xs remove-faq-item">
+                                        <i class="fas fa-trash-alt"></i> {{ __('Remove') }}
+                                    </button>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="mb-1">{{ __('Question') }}</label>
+                                    <input type="text" class="form-control" name="faq_questions[]" placeholder="{{ __('e.g. Enter FAQ question...') }}">
+                                </div>
+                                <div class="form-group mb-0">
+                                    <label class="mb-1">{{ __('Answer') }}</label>
+                                    <textarea class="form-control" name="faq_answers[]" rows="2" placeholder="{{ __('Write a clear, direct answer...') }}"></textarea>
+                                </div>
+                            </div>
+                        </div>`;
+                    $('#faq_items_container').append(rowHtml);
+                });
+
+                $(document).on('click', '.remove-faq-item', function() {
+                    if ($('#faq_items_container .faq-item-row').length > 1) {
+                        $(this).closest('.faq-item-row').remove();
+                        renumberFaqBadges();
+                    } else {
+                        $(this).closest('.faq-item-row').find('input, textarea').val('');
+                    }
+                });
             });
 
     </script>

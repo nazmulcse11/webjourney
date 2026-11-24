@@ -10,7 +10,7 @@
         $postUrl = route('post.details', $post_details->slug);
         $postImage = !empty($post_details->image)
             ? asset('images/post/' . $post_details->image)
-            : asset('frontend/images/web-journey-your-web-tutor.png');
+            : asset('frontend/images/default-post-668x445.png');
         $primaryCategory = $post_details->categories->first();
 
         $schemaGraph = [
@@ -69,7 +69,7 @@
             ],
         ];
 
-        if (!empty($faq_items) && count($faq_items) >= 2) {
+        if (!empty($faq_items) && count($faq_items) >= 1) {
             $schemaGraph[] = [
                 '@type' => 'FAQPage',
                 '@id' => $postUrl . '#faq',
@@ -79,7 +79,7 @@
                         'name' => $faq['question'],
                         'acceptedAnswer' => [
                             '@type' => 'Answer',
-                            'text' => $faq['answer'],
+                            'text' => trim(preg_replace('/\s+/', ' ', strip_tags($faq['answer']))),
                         ],
                     ];
                 }, $faq_items),
@@ -587,6 +587,29 @@
                                     <div class="post-description-content">
                                         {!! $post_details->description !!}
                                     </div>
+
+                                    @if(!empty($custom_faqs) && count($custom_faqs) > 0)
+                                    <div id="post-faq-section" style="margin: 28px 0 20px 0; padding: 22px 24px; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; text-align: left; clear: both; width: 100%; box-sizing: border-box;">
+                                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid #e2e8f0;">
+                                            <span style="width: 34px; height: 34px; border-radius: 8px; background: #183c7d; color: #ffffff; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; flex-shrink: 0;">?</span>
+                                            <h2 style="font-size: 20px !important; font-weight: 800 !important; color: #183c7d !important; margin: 0 !important; padding: 0 !important; line-height: 1.3 !important;">
+                                                {{ __('Frequently Asked Questions (FAQ)') }}
+                                            </h2>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                                            @foreach($custom_faqs as $fIdx => $faq)
+                                                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #183c7d; border-radius: 8px; padding: 14px 18px; text-align: left;">
+                                                    <h3 style="font-size: 16px !important; font-weight: 700 !important; color: #0f172a !important; margin: 0 0 6px 0 !important; line-height: 1.4 !important;">
+                                                        {{ $fIdx + 1 }}. {{ $faq['question'] }}
+                                                    </h3>
+                                                    <div style="font-size: 14.5px !important; color: #334155 !important; line-height: 1.65 !important; margin: 0 !important;">
+                                                        {!! nl2br(e($faq['answer'])) !!}
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    @endif
 
                                     @if(!empty($matched_quiz))
                                     <div class="wj-quiz-cta-card">

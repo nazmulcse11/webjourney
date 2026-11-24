@@ -7,11 +7,9 @@
             <div class="article-masonry">
                 <article class="card-post">
                     <div class="card-post-img fl-wrap">
-                        @if($post->image !=NULL)
-                            <a href="{{ route('post.details',$post->slug) }}">
-                                <img src="{{ asset('images/post/'.$post->image) ?? '' }}" alt="{{ $post->title }}" loading="lazy">
-                            </a>
-                        @endif
+                        <a href="{{ route('post.details',$post->slug) }}">
+                            <img src="{{ !empty($post->image) ? asset('images/post/'.$post->image) : asset('frontend/images/default-post-668x445.png') }}" alt="{{ $post->title }}" loading="lazy">
+                        </a>
                     </div>
                     <div class="card-post-content fl-wrap">
                         <h2><a href="{{ route('post.details',$post->slug) }}">{{ $post->title }}</a></h2>
