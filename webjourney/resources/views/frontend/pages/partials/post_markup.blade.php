@@ -8,7 +8,7 @@
                 <article class="card-post">
                     <div class="card-post-img fl-wrap">
                         <a href="{{ route('post.details',$post->slug) }}">
-                            <img src="{{ !empty($post->image) ? asset('images/post/'.$post->image) : asset('frontend/images/default-post-668x445.png') }}" alt="{{ $post->title }}" loading="lazy">
+                            <img src="{{ !empty($post->image) ? asset('images/post/'.$post->image) : asset('frontend/images/default-post-668x445.png') }}" onerror="this.onerror=null;this.src='{{ asset('frontend/images/web-journey-your-web-tutor.png') }}';" alt="{{ $post->title }}" loading="lazy">
                         </a>
                     </div>
                     <div class="card-post-content fl-wrap">

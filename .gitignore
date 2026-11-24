@@ -5,7 +5,7 @@
 # AdSense files & uploads
 ads.txt
 BingSiteAuth.xml
-images/
+/images/
 
 # Dependencies & build artifacts
 /vendor
