@@ -636,37 +636,6 @@
                                                 </span>
                                             </li>
                                             <li><a href="{{ route('post.details',$post_details->slug) }}"><i class="fal fa-eye"></i> <span>{{ $post_details->view }}</span></a></li>
-                                            <li data-post_id="{{ $post_details->id }}" class="like-post like_unlike{{ $post_details->id }}">
-                                                <a href="javascript:void(0)">
-                                                    @php $user_like_count =0 @endphp
-                                                    @if(Auth::guard('web')->check())
-                                                        @foreach ($post_details->post_like as $like)
-                                                            @if($like->user_id == Auth::guard('web')->user()->id)
-                                                                @php $user_like_count=1 @endphp
-                                                                <i class="fal fa-thumbs-up" style="color:red!important"></i>
-                                                            @endif
-                                                        @endforeach
-                                                    @endif
-                                                    @if($user_like_count == 0) <i class="fal fa-thumbs-up"></i> @endif
-                                                    <span class="post_like_count_{{$post_details->id}}">{{ optional($post_details->post_like)->count() }}</span>
-                                                </a>
-                                            </li>
-                                            <li data-post_id="{{ $post_details->id }}" class="favourite-post favourite_unfavourite{{ $post_details->id }}">
-                                                <a href="javascript:void(0)">
-                                                    @php $user_fav_count=0 @endphp
-                                                    @if(Auth::guard('web')->check())
-                                                        @foreach ($post_details->post_favourite as $fav)
-                                                            @if($fav->user_id == Auth::guard('web')->user()->id)
-                                                                @php $user_fav_count=1 @endphp
-                                                                <i class="fal fa-heart" style="color:red!important"></i>
-                                                            @endif
-                                                        @endforeach
-                                                    @endif
-                                                    @if($user_fav_count == 0) <i class="fal fa-heart"></i> @endif
-                                                    <span class="post_favourite_count_{{$post_details->id}}">{{ optional($post_details->post_favourite)->count() }}</span>
-                                                </a>
-                                            </li>
-                                            <li><i class="fal fa-comment"></i> <span>{{ optional($post_details->comments)->count() }}</span></li>
                                         </ul>
                                     </div>
                                     <span class="fw-separator"></span>

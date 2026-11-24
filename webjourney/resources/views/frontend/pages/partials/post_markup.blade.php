@@ -14,11 +14,11 @@
                     <div class="card-post-content fl-wrap">
                         <h2><a href="{{ route('post.details',$post->slug) }}">{{ $post->title }}</a></h2>
                         <p>{{ Str::limit(!empty($post->meta_description) ? $post->meta_description : trim(preg_replace('/\s+/', ' ', strip_tags($post->description))), 160) }}</p>
-                        <div class="post-author">
-                            <a href="{{ route('post.details',$post->slug) }}">
-                                <span>{{ __('Read More...')  }}</span>
-                                <span> &nbsp;&nbsp; </span>
-                                <span>
+                        <div class="post-author" style="width:100%; margin-right:0; display:flex; align-items:center; justify-content:space-between; padding-bottom:14px; border-bottom:1px solid #eee; margin-bottom:10px;">
+                            <a href="{{ route('post.details',$post->slug) }}" style="text-align:left;">
+                                <span style="top:0;">{{ __('Read More...')  }}</span>
+                                <span style="top:0;"> &nbsp;&nbsp; </span>
+                                <span style="top:0;">
                                     <i class="fal fa-calendar"></i> 
                                     @if($post->updated_at && $post->created_at && $post->created_at->format('Y-m-d') !== $post->updated_at->format('Y-m-d'))
                                         Updated: {{ $post->updated_at->toFormattedDateString() }}
@@ -27,17 +27,11 @@
                                     @endif
                                 </span>
                             </a>
-
-                        </div>
-                        <div class="post-opt">
-                            <ul>
-                                <li>
-                                    <a href="{{ route('post.details',$post->slug) }}">
-                                        <i class="fal fa-eye"></i>
-                                        <span>{{ $post->view }}</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <a href="{{ route('post.details',$post->slug) }}" style="text-align:right; white-space:nowrap;">
+                                <span style="top:0; color:#999; font-size:13px; font-weight:600;">
+                                    <i class="fal fa-eye" style="color:#F9B90F; margin-right:3px;"></i> {{ $post->view }}
+                                </span>
+                            </a>
                         </div>
                         <div class="box-widget-item fl-wrap">
                             <div class="list-widget-social">
