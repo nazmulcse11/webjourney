@@ -196,8 +196,9 @@
             text-align: left !important;
             color: #183c7d;
             font-weight: 700;
-            margin-top: 24px !important;
-            margin-bottom: 12px !important;
+            margin-top: 22px !important;
+            margin-bottom: 4px !important;
+            padding-bottom: 0 !important;
             clear: both !important;
             float: none !important;
             display: block !important;

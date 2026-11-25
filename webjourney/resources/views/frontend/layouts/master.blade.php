@@ -102,6 +102,10 @@
         .card-post-content h2 a:hover {
             color: #5ECFB1 !important;
         }
+        .box-widget-item-header {
+            padding-bottom: 4px !important;
+            margin-bottom: 8px !important;
+        }
         .post-grid-container {
             display: flex !important;
             flex-wrap: wrap !important;
