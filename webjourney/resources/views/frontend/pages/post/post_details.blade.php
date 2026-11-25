@@ -639,20 +639,21 @@
                                         </ul>
                                     </div>
                                     <span class="fw-separator" style="margin: 10px 0 8px 0 !important;"></span>
-                                    <div class="list-single-main-item-title fl-wrap" style="padding: 0 0 4px 0 !important; margin: 0 0 6px 0 !important;">
+                                    <div class="list-single-main-item-title fl-wrap" style="padding: 0 0 4px 0 !important; margin: 0 0 4px 0 !important;">
                                         <h3 style="margin: 0 !important; padding: 0 !important; line-height: 1.3 !important;">{{ __('Tags') }}</h3>
                                     </div>
-                                    <div class="list-single-tags tags-stylwrap blog-tags" style="margin: 0 !important; padding: 0 !important;">
+                                    <div class="list-single-tags tags-stylwrap blog-tags" style="margin: 0 0 12px 0 !important; padding: 0 !important;">
                                         @foreach($post_details->tags as $tag)
                                             <a href="{{ route('tag.tutorial',$tag->slug) }}" style="margin-bottom: 4px !important; margin-top: 2px !important;">{{ $tag->name }}</a>
                                         @endforeach
                                     </div>
 
-                                    <span class="fw-separator" style="margin: 4px 0 4px 0 !important;"></span>
+                                    <div class="list-single-main-item-title fl-wrap" style="padding: 0 0 4px 0 !important; margin: 0 0 4px 0 !important;">
+                                        <h3 style="margin: 0 !important; padding: 0 !important; line-height: 1.3 !important;">{{ __('Share This:') }}</h3>
+                                    </div>
                                     <div class="box-widget-item fl-wrap" style="margin: 0 !important; padding: 0 !important;">
-                                        <div class="list-widget-social" style="margin-top: 0 !important;">
+                                        <div class="list-widget-social" style="margin-top: 2px !important;">
                                             <ul style="margin: 0 !important; padding: 0 !important;">
-                                                <li style="padding-left: 0 !important;"><p style="margin: 0 10px 0 0 !important; padding-bottom: 0 !important; line-height: 25px !important;">{{ __('Share This:') }}</p></li>
                                                 @php $post_img = !empty($post_details->image) ? asset('images/post/'.$post_details->image) : ''; @endphp
                                                 {!! single_post_share(route('post.details', $post_details->slug), $post_details->title, $post_img) !!}
                                             </ul>
