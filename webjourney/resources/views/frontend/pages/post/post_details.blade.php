@@ -196,13 +196,23 @@
             text-align: left !important;
             color: #183c7d;
             font-weight: 700;
-            margin-top: 22px !important;
-            margin-bottom: 4px !important;
-            padding-bottom: 0 !important;
+            line-height: 1.2 !important;
+            margin-top: 18px !important;
+            margin-bottom: 2px !important;
+            padding: 0 !important;
             clear: both !important;
             float: none !important;
             display: block !important;
             width: 100% !important;
+        }
+        .post-description-content h1 + p,
+        .post-description-content h2 + p,
+        .post-description-content h3 + p,
+        .post-description-content h4 + p,
+        .post-description-content h5 + p,
+        .post-description-content h6 + p {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
         }
         /* Main Post Title Typography */
         .description_heading_title {

@@ -104,7 +104,7 @@
         }
         .box-widget-item-header {
             padding-bottom: 4px !important;
-            margin-bottom: 8px !important;
+            margin-bottom: 4px !important;
         }
         .post-grid-container {
             display: flex !important;
