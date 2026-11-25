@@ -648,11 +648,11 @@
                                         @endforeach
                                     </div>
 
-                                    <span class="fw-separator" style="margin: 4px 0 6px 0 !important;"></span>
+                                    <span class="fw-separator" style="margin: 4px 0 4px 0 !important;"></span>
                                     <div class="box-widget-item fl-wrap" style="margin: 0 !important; padding: 0 !important;">
-                                        <div class="list-widget-social">
-                                            <ul>
-                                                <li><p style="margin: 0 10px 0 0 !important;">{{ __('Share This:') }}</p></li>
+                                        <div class="list-widget-social" style="margin-top: 0 !important;">
+                                            <ul style="margin: 0 !important; padding: 0 !important;">
+                                                <li style="padding-left: 0 !important;"><p style="margin: 0 10px 0 0 !important; padding-bottom: 0 !important; line-height: 25px !important;">{{ __('Share This:') }}</p></li>
                                                 @php $post_img = !empty($post_details->image) ? asset('images/post/'.$post_details->image) : ''; @endphp
                                                 {!! single_post_share(route('post.details', $post_details->slug), $post_details->title, $post_img) !!}
                                             </ul>
