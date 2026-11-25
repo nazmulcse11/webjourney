@@ -638,26 +638,26 @@
                                             <li><a href="{{ route('post.details',$post_details->slug) }}"><i class="fal fa-eye"></i> <span>{{ $post_details->view }}</span></a></li>
                                         </ul>
                                     </div>
-                                    <span class="fw-separator"></span>
-                                    <div class="list-single-main-item-title fl-wrap">
-                                        <h3>{{ __('Tags') }}</h3>
+                                    <span class="fw-separator" style="margin: 10px 0 8px 0 !important;"></span>
+                                    <div class="list-single-main-item-title fl-wrap" style="padding: 0 0 4px 0 !important; margin: 0 0 6px 0 !important;">
+                                        <h3 style="margin: 0 !important; padding: 0 !important; line-height: 1.3 !important;">{{ __('Tags') }}</h3>
                                     </div>
-                                    <div class="list-single-tags tags-stylwrap blog-tags">
+                                    <div class="list-single-tags tags-stylwrap blog-tags" style="margin: 0 !important; padding: 0 !important;">
                                         @foreach($post_details->tags as $tag)
-                                            <a href="{{ route('tag.tutorial',$tag->slug) }}">{{ $tag->name }}</a>
+                                            <a href="{{ route('tag.tutorial',$tag->slug) }}" style="margin-bottom: 4px !important; margin-top: 2px !important;">{{ $tag->name }}</a>
                                         @endforeach
                                     </div>
 
-                                    <span class="fw-separator"></span>
-                                        <div class="box-widget-item fl-wrap">
-                                            <div class="list-widget-social">
-                                                <ul>
-                                                    <li><p>{{ __('Share This:') }}</p></li>
-                                                  @php $post_img = !empty($post_details->image) ? asset('images/post/'.$post_details->image) : ''; @endphp
-                                                    {!! single_post_share(route('post.details', $post_details->slug), $post_details->title, $post_img) !!}
-                                                </ul>
-                                            </div>
+                                    <span class="fw-separator" style="margin: 4px 0 6px 0 !important;"></span>
+                                    <div class="box-widget-item fl-wrap" style="margin: 0 !important; padding: 0 !important;">
+                                        <div class="list-widget-social">
+                                            <ul>
+                                                <li><p style="margin: 0 10px 0 0 !important;">{{ __('Share This:') }}</p></li>
+                                                @php $post_img = !empty($post_details->image) ? asset('images/post/'.$post_details->image) : ''; @endphp
+                                                {!! single_post_share(route('post.details', $post_details->slug), $post_details->title, $post_img) !!}
+                                            </ul>
                                         </div>
+                                    </div>
                                 </div>
                                 
                                 <!-- prev / next tutorial navigation -->
