@@ -589,20 +589,20 @@
                                     </div>
 
                                     @if(!empty($custom_faqs) && count($custom_faqs) > 0)
-                                    <div id="post-faq-section" style="margin: 28px 0 20px 0; padding: 22px 24px; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; text-align: left; clear: both; width: 100%; box-sizing: border-box;">
-                                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid #e2e8f0;">
+                                    <div id="post-faq-section" style="margin: 28px 0 20px 0; padding: 22px 24px; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; text-align: left !important; clear: both; float: none !important; width: 100%; box-sizing: border-box;">
+                                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid #e2e8f0; width: 100%; clear: both;">
                                             <span style="width: 34px; height: 34px; border-radius: 8px; background: #183c7d; color: #ffffff; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; flex-shrink: 0;">?</span>
-                                            <h2 style="font-size: 20px !important; font-weight: 800 !important; color: #183c7d !important; margin: 0 !important; padding: 0 !important; line-height: 1.3 !important;">
+                                            <h2 style="font-size: 20px !important; font-weight: 800 !important; color: #183c7d !important; margin: 0 !important; padding: 0 !important; line-height: 1.3 !important; float: none !important; width: auto !important; text-align: left !important; border: none !important;">
                                                 {{ __('Frequently Asked Questions (FAQ)') }}
                                             </h2>
                                         </div>
-                                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                                        <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; clear: both;">
                                             @foreach($custom_faqs as $fIdx => $faq)
-                                                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #183c7d; border-radius: 8px; padding: 14px 18px; text-align: left;">
-                                                    <h3 style="font-size: 16px !important; font-weight: 700 !important; color: #0f172a !important; margin: 0 0 6px 0 !important; line-height: 1.4 !important;">
+                                                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #183c7d; border-radius: 8px; padding: 14px 18px; text-align: left !important; width: 100%; box-sizing: border-box; clear: both; float: none !important;">
+                                                    <h3 style="display: block !important; width: 100% !important; float: none !important; clear: both !important; text-align: left !important; font-size: 16px !important; font-weight: 700 !important; color: #183c7d !important; margin: 0 0 8px 0 !important; padding: 0 0 6px 0 !important; border-bottom: 1px dashed #e2e8f0 !important; line-height: 1.45 !important;">
                                                         {{ $fIdx + 1 }}. {{ $faq['question'] }}
                                                     </h3>
-                                                    <div style="font-size: 14.5px !important; color: #334155 !important; line-height: 1.65 !important; margin: 0 !important;">
+                                                    <div style="display: block !important; width: 100% !important; float: none !important; clear: both !important; text-align: left !important; font-size: 14.5px !important; color: #334155 !important; line-height: 1.65 !important; margin: 0 !important;">
                                                         {!! nl2br(e($faq['answer'])) !!}
                                                     </div>
                                                 </div>
