@@ -639,7 +639,7 @@
                                         </ul>
                                     </div>
                                     <span class="fw-separator" style="margin: 10px 0 0 0 !important;"></span>
-                                    <div class="list-single-main-item-title fl-wrap" style="padding: 10px 0 4px 0 !important; margin: 0 0 4px 0 !important;">
+                                    <div class="list-single-main-item-title fl-wrap" style="padding: 15px 0 4px 0 !important; margin: 0 0 4px 0 !important;">
                                         <h3 style="margin: 0 !important; padding: 0 !important; line-height: 1.3 !important;">{{ __('Tags') }}</h3>
                                     </div>
                                     <div class="list-single-tags tags-stylwrap blog-tags" style="margin: 0 !important; padding: 0 !important;">
@@ -648,7 +648,7 @@
                                         @endforeach
                                     </div>
 
-                                    <div class="list-single-main-item-title fl-wrap" style="padding: 10px 0 4px 0 !important; margin: 0 0 4px 0 !important;">
+                                    <div class="list-single-main-item-title fl-wrap" style="padding: 15px 0 4px 0 !important; margin: 0 0 4px 0 !important;">
                                         <h3 style="margin: 0 !important; padding: 0 !important; line-height: 1.3 !important;">{{ __('Share This:') }}</h3>
                                     </div>
                                     <div class="box-widget-item fl-wrap" style="margin: 0 !important; padding: 0 !important;">
