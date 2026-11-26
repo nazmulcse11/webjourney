@@ -4,7 +4,7 @@
     <div class="header-inner fl-wrap">
         <div class="container">
 
-            <div class="show-search-button"><span>{{ __('Search') }}</span> <i class="fas fa-search"></i> </div>
+            <div class="show-search-button"><span>{{ __('Search') }}</span> <i class="far fa-search"></i> </div>
              
              @if(Auth::check())
                 <div class="wishlist-link"><i class="fal fa-heart"></i>
