@@ -46,7 +46,7 @@
                     <!--box-image-widget-->
                     @foreach($popular_posts as $post)
                         <div class="box-image-widget">
-                            <a style="text-align:left" href="{{ route('post.details',$post->slug) }}"><h4><i class="fal fa-angle-double-right"></i> {{ $post->title }}</h4></a>
+                            <a href="{{ route('post.details',$post->slug) }}"><h4>{{ $post->title }}</h4></a>
                         </div>
                     @endforeach
                 <!--box-image-widget end -->
