@@ -1,13 +1,14 @@
 <style>
-    /* Fix Header Close Icon when Search is Open (fa-times \f00d is in fa-light-300 / font-weight: 300) */
-    .show-search-button i.vis-head-search-close {
-        font-family: "Font Awesome 5 Pro" !important;
-        font-weight: 300 !important;
-    }
+    /* Fix Header Close Icon when Search is Open:
+       plugins.css defines @font-face as Font Awesome\5 Pro (escaped 5, no space),
+       whereas style.css line 491 wrote font-family: Font Awesome\ 5 Pro; which broke the font!
+       Using unicode \2715 with system sans-serif renders a crisp ✕ every time without font mismatch. */
     .show-search-button i.vis-head-search-close:before {
-        content: "\f00d" !important;
-        font-family: "Font Awesome 5 Pro" !important;
-        font-weight: 300 !important;
+        content: "\2715" !important;
+        font-family: Arial, sans-serif !important;
+        font-weight: 700 !important;
+        font-size: 14px !important;
+        color: #F9B90F !important;
     }
 
     /* Keep Search Box Inside Container (Not Full Page Width) with Light Background */
