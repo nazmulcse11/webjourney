@@ -72,10 +72,23 @@
     @yield('schema')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!--=============== preconnects & fonts ===============-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap"></noscript>
+
     <!--=============== css  ===============-->
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/css/plugins.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <style>
+        /* Instant Paint (Eliminate render-blocking full-screen loader delay for FCP & LCP) */
+        .loader-wrap { display: none !important; }
+        #main { opacity: 1 !important; }
+        .card-post-img img { aspect-ratio: 16 / 9; width: 100%; height: auto; display: block; }
+        li.page-item.active .page-link, li.page-item.active { background: #183c7d !important; color: #ffffff !important; border-color: #183c7d !important; }
+
         /* Missing Font Awesome 5 Brands Icons */
         .fa-whatsapp:before { content: "\f232" !important; }
         .fa-reddit:before { content: "\f1a1" !important; }
@@ -134,15 +147,11 @@
             flex-wrap: wrap !important;
         }
     </style>
-    <link type="text/css" rel="stylesheet" href="{{ asset('frontend/css/prism.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('frontend/css/prism.css') }}" media="print" onload="this.media='all'">
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="{{asset('images/favicon/favicon.png')}}">
-    <link rel="stylesheet" href="{{ asset('common/css/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('common/css/toastr.min.css') }}" media="print" onload="this.media='all'">
 
-    {{-- jquery--}}
-    <script type="text/javascript" src="{{ asset('frontend/js/jquery.min.js') }}"></script>
-    
-    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWJHK66HKL"></script>
     <script>
@@ -161,26 +170,20 @@
 
 </head>
 <body>
-<!--loader-->
-<div class="loader-wrap">
-    <div class="pin">
-        <div class="pulse"></div>
-    </div>
-</div>
-<!--loader end-->
 <!-- Main  -->
 <div id="main">
     @include('frontend.layouts.partials.header')
     @yield('content')
     @include('frontend.layouts.partials.footer')
     @include('frontend.layouts.partials.login_register_modal')
-    <a class="to-top"><i class="fas fa-caret-up"></i></a>
+    <a href="#main" class="to-top" aria-label="Back to top"><i class="fas fa-caret-up"></i></a>
 </div>
 <!-- Main end -->
 <!--=============== scripts  ===============-->
+<script type="text/javascript" src="{{ asset('frontend/js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('frontend/js/plugins.js') }}"></script>
 <script type="text/javascript" src="{{ asset('frontend/js/scripts.js') }}"></script>
-<script type="text/javascript" src="{{ asset('frontend/js/prism.js') }}"></script>
+<script type="text/javascript" src="{{ asset('frontend/js/prism.js') }}" defer></script>
 <script>
     $.ajaxSetup({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}

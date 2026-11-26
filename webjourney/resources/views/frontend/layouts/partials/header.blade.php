@@ -18,7 +18,7 @@
             @include('frontend.pages.partials.my_account')
             <!-- my-account-wrap-->
 
-            <div class="home-btn"><a href="{{ route('homepage') }}"><i class="fas fa-home"></i></a></div>
+            <div class="home-btn"><a href="{{ route('homepage') }}" aria-label="Home"><i class="fas fa-home"></i></a></div>
             <!-- nav-button-wrap-->
             <div class="nav-button-wrap color-bg">
                 <div class="nav-button">

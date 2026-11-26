@@ -56,7 +56,7 @@
 
                             </form>
                             <div class="lost_password">
-                                <a href="#" id="lost_password">{{ __('Lost Your Password?') }}</a>
+                                <a href="#lostPasswordForm" id="lost_password">{{ __('Lost Your Password?') }}</a>
                             </div>
                         </div>
                     </div>
