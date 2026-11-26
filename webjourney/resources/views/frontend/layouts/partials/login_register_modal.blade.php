@@ -24,23 +24,29 @@
         border: 1px solid rgba(255, 255, 255, 0.15) !important;
     }
 
-    /* Modern Top Header with Segmented Pill Tabs + Separate Close Button */
+    /* Modern Top Header with Equal-Sized Login / Register Buttons + Matching Close Button */
     #loginRegisterModal .wj-modal-topbar {
         background: #f8fafc !important;
-        padding: 12px 54px 12px 18px !important;
+        padding: 14px 24px !important;
         border-bottom: 1px solid #e2e8f0 !important;
         position: relative !important;
         width: 100% !important;
         box-sizing: border-box !important;
         float: left !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
     }
     #loginRegisterModal .tabs-menu {
         display: flex !important;
+        flex: 1 1 auto !important;
+        gap: 10px !important;
         float: none !important;
-        width: 100% !important;
-        background: #e2e8f0 !important;
-        padding: 4px !important;
-        border-radius: 10px !important;
+        width: auto !important;
+        background: transparent !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
         margin: 0 !important;
         list-style: none !important;
         box-sizing: border-box !important;
@@ -59,17 +65,24 @@
         gap: 7px !important;
         float: none !important;
         width: 100% !important;
-        padding: 9px 12px !important;
+        height: 38px !important;
+        line-height: 1 !important;
+        padding: 0 12px !important;
         border-radius: 8px !important;
         font-size: 13px !important;
         font-weight: 700 !important;
         letter-spacing: 0.3px !important;
         text-transform: uppercase !important;
         text-align: center !important;
-        background: transparent !important;
-        color: #475569 !important;
+        background: #ffffff !important;
+        color: #334155 !important;
+        border: 1.5px solid #cbd5e1 !important;
         transition: all 0.2s ease !important;
         box-sizing: border-box !important;
+    }
+    #loginRegisterModal .tabs-menu li a:hover {
+        border-color: #94a3b8 !important;
+        background: #f1f5f9 !important;
     }
     #loginRegisterModal .tabs-menu li a i {
         padding: 0 !important;
@@ -81,25 +94,32 @@
     #loginRegisterModal .tabs-menu li.current a {
         background: #183c7d !important;
         color: #ffffff !important;
-        box-shadow: 0 2px 8px rgba(24, 60, 125, 0.25) !important;
+        border: 1.5px solid #183c7d !important;
+        box-shadow: 0 2px 6px rgba(24, 60, 125, 0.2) !important;
     }
     #loginRegisterModal .tabs-menu li.current a i {
         color: #F9B90F !important;
     }
     #loginRegisterModal .close-reg {
-        position: absolute !important;
-        top: 50% !important;
-        right: 14px !important;
-        transform: translateY(-50%) !important;
-        width: 32px !important;
-        height: 32px !important;
-        line-height: 30px !important;
-        border-radius: 50% !important;
-        background: #e2e8f0 !important;
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        transform: none !important;
+        flex: 0 0 38px !important;
+        width: 38px !important;
+        height: 38px !important;
+        line-height: 1 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 8px !important;
+        background: #ffffff !important;
         color: #334155 !important;
-        border: 1px solid #cbd5e1 !important;
+        border: 1.5px solid #cbd5e1 !important;
         text-align: center !important;
-        font-size: 14px !important;
+        font-size: 15px !important;
+        cursor: pointer !important;
+        box-sizing: border-box !important;
         transition: all 0.2s ease !important;
     }
     #loginRegisterModal .close-reg:hover {
