@@ -1,9 +1,13 @@
 <style>
-    /* Fix Header Close Icon when Search is Open */
+    /* Fix Header Close Icon when Search is Open (fa-times \f00d is in fa-light-300 / font-weight: 300) */
+    .show-search-button i.vis-head-search-close {
+        font-family: "Font Awesome 5 Pro" !important;
+        font-weight: 300 !important;
+    }
     .show-search-button i.vis-head-search-close:before {
         content: "\f00d" !important;
         font-family: "Font Awesome 5 Pro" !important;
-        font-weight: 400 !important;
+        font-weight: 300 !important;
     }
 
     /* Keep Search Box Inside Container (Not Full Page Width) with Light Background */
@@ -24,10 +28,10 @@
     }
     .header-search > .container {
         background: #f1f5f9 !important;
-        border: 1px solid #cbd5e1 !important;
+        border: 1px solid #e2e8f0 !important;
         border-top: none !important;
         border-radius: 0 0 12px 12px !important;
-        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18) !important;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16) !important;
         padding: 18px 24px 20px !important;
         position: relative !important;
         box-sizing: border-box !important;
@@ -39,20 +43,18 @@
         letter-spacing: 0.4px !important;
         margin-bottom: 8px !important;
     }
-    .header-search .header-search-input-item input[type="text"] {
+    .header-search .header-search-input-item input[type="text"],
+    .header-search .header-search-input-item input[type="text"]:focus {
         background: #ffffff !important;
-        border: 1.5px solid #cbd5e1 !important;
+        border: 1.5px solid #e2e8f0 !important;
         border-radius: 8px !important;
         height: 44px !important;
         line-height: 44px !important;
         font-size: 14px !important;
         color: #1e293b !important;
         padding: 0 16px 0 38px !important;
-        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
-    }
-    .header-search .header-search-input-item input[type="text"]:focus {
-        border-color: #183c7d !important;
-        box-shadow: 0 0 0 3px rgba(24, 60, 125, 0.12) !important;
+        box-shadow: none !important;
+        outline: none !important;
     }
     .header-search .header-search-input-item-icon {
         bottom: 14px !important;
