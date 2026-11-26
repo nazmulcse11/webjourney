@@ -28,6 +28,8 @@
     <meta name="twitter:title" content="@yield('og_title', 'WebJourney')">
     <meta name="twitter:description" content="@yield('og_description', $defaultDescription)">
     <meta name="twitter:image" content="@yield('og_image', $defaultOgImage)">
+    <link rel="alternate" type="application/rss+xml" title="WebJourney RSS Feed" href="{{ route('rss.feed') }}" />
+    @yield('meta_extra')
     @if($currentURL == $site_url)
     <script type="application/ld+json">
     {!! json_encode([

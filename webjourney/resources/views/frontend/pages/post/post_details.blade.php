@@ -12,6 +12,8 @@
             ? asset('images/post/' . $post_details->image)
             : asset('frontend/images/default-post-668x445.png');
         $primaryCategory = $post_details->categories->first();
+        $wordCount = max(100, str_word_count(strip_tags((string) $post_details->description)));
+        $readingMinutes = max(1, (int) ceil($wordCount / 200));
 
         $schemaGraph = [
             [
@@ -24,12 +26,20 @@
                 'headline' => $seoTitle,
                 'description' => $seoDescription,
                 'image' => [$postImage],
+                'wordCount' => $wordCount,
+                'timeRequired' => 'PT' . $readingMinutes . 'M',
                 'datePublished' => optional($post_details->created_at)->toAtomString(),
                 'dateModified' => optional($post_details->updated_at ?? $post_details->created_at)->toAtomString(),
                 'author' => [
                     '@type' => 'Person',
                     'name' => 'Nazmul Hoque',
+                    'jobTitle' => 'Full-Stack Web Developer',
                     'url' => route('about.us'),
+                    'sameAs' => [
+                        'https://stackoverflow.com/users/12187513/nazmul-hoque',
+                        'https://www.youtube.com/c/WebJourneybd',
+                        'https://www.facebook.com/WebJourneybd',
+                    ],
                 ],
                 'publisher' => [
                     '@type' => 'Organization',
@@ -94,6 +104,14 @@
     @section('og_title'){{ $seoTitle }}@endsection
     @section('og_description'){{ $seoDescription }}@endsection
     @section('og_image'){{ $postImage }}@endsection
+    @section('meta_extra')
+    <meta property="article:published_time" content="{{ optional($post_details->created_at)->toAtomString() }}">
+    <meta property="article:modified_time" content="{{ optional($post_details->updated_at ?? $post_details->created_at)->toAtomString() }}">
+    <meta property="article:section" content="{{ $primaryCategory ? $primaryCategory->name : 'Web Development' }}">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="720">
+    <meta property="og:image:alt" content="{{ $post_details->title }}">
+    @endsection
     @section('schema')
     <script type="application/ld+json">
     {!! json_encode([
@@ -637,6 +655,10 @@
                                     <div class="post-opt">
                                         <ul>
                                             <li>
+                                                <i class="fal fa-user"></i>
+                                                <span><a href="{{ route('about.us') }}" style="color:#666;">Nazmul Hoque</a></span>
+                                            </li>
+                                            <li>
                                                 <i class="fal fa-calendar"></i> 
                                                 <span>
                                                     @if($post_details->updated_at && $post_details->created_at && $post_details->created_at->format('Y-m-d') !== $post_details->updated_at->format('Y-m-d'))
@@ -645,6 +667,10 @@
                                                         {{ $post_details->created_at->toFormattedDateString() }}
                                                     @endif
                                                 </span>
+                                            </li>
+                                            <li>
+                                                <i class="fal fa-clock"></i>
+                                                <span>{{ $readingMinutes }} {{ __('min read') }}</span>
                                             </li>
                                             <li><a href="{{ route('post.details',$post_details->slug) }}"><i class="fal fa-eye"></i> <span>{{ $post_details->view }}</span></a></li>
                                         </ul>
@@ -668,6 +694,27 @@
                                                 @php $post_img = !empty($post_details->image) ? asset('images/post/'.$post_details->image) : ''; @endphp
                                                 {!! single_post_share(route('post.details', $post_details->slug), $post_details->title, $post_img) !!}
                                             </ul>
+                                        </div>
+                                    </div>
+
+                                    <!-- E-E-A-T Author Bio Box -->
+                                    <div style="margin-top: 18px; padding: 16px 20px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; display: flex; align-items: flex-start; gap: 14px; text-align: left; clear: both; float: left; width: 100%; box-sizing: border-box;">
+                                        <div style="width: 46px; height: 46px; border-radius: 50%; background: #183c7d; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; flex-shrink: 0;">
+                                            NH
+                                        </div>
+                                        <div style="flex: 1; min-width: 0; text-align: left;">
+                                            <div style="font-size: 15px; font-weight: 700; color: #183c7d; margin-bottom: 3px; line-height: 1.3;">
+                                                Written by <a href="{{ route('about.us') }}" style="color: #183c7d; text-decoration: none;">Nazmul Hoque</a>
+                                                <span style="font-size: 12px; font-weight: 600; color: #64748b; margin-left: 6px;">• Full-Stack PHP &amp; Laravel Developer</span>
+                                            </div>
+                                            <p style="font-size: 13.5px !important; color: #475569 !important; line-height: 1.55 !important; margin: 0 0 8px 0 !important; padding: 0 !important; text-align: left !important;">
+                                                Full-stack web developer building production applications and practical tutorials on PHP, Laravel, MySQL, JavaScript, jQuery, Vue.js, and React.
+                                            </p>
+                                            <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 12.5px; font-weight: 600;">
+                                                <a href="https://stackoverflow.com/users/12187513/nazmul-hoque" target="_blank" rel="noopener" style="color: #183c7d; text-decoration: none;"><i class="fab fa-stack-overflow" style="color: #F9B90F; margin-right: 4px;"></i> StackOverflow</a>
+                                                <a href="https://www.youtube.com/c/WebJourneybd" target="_blank" rel="noopener" style="color: #183c7d; text-decoration: none;"><i class="fab fa-youtube" style="color: #ef4444; margin-right: 4px;"></i> YouTube</a>
+                                                <a href="{{ route('about.us') }}" style="color: #183c7d; text-decoration: none;">About WebJourney →</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

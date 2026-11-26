@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend;
 
 Route::get('/',[Frontend\FHomeController::class,'home_page'])->name('homepage');
 Route::get('/sitemap.xml',[Frontend\SitemapController::class,'index'])->name('sitemap');
+Route::get('/feed.xml',[Frontend\SitemapController::class,'feed'])->name('rss.feed');
 Route::get('/privacy-policy',[Frontend\StaticPageController::class,'privacy_policy'])->name('privacy.policy');
 Route::get('/terms-of-use',[Frontend\StaticPageController::class,'terms_of_use'])->name('terms.of.use');
 Route::get('/about-us',[Frontend\StaticPageController::class,'about_us'])->name('about.us');

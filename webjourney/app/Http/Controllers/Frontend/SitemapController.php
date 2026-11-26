@@ -48,4 +48,23 @@ class SitemapController extends Controller
             'Cache-Control' => 'public, max-age=3600',
         ]);
     }
+
+    public function feed(): Response
+    {
+        $posts = Post::with('categories')
+            ->select(['id', 'title', 'slug', 'description', 'meta_description', 'image', 'created_at', 'updated_at'])
+            ->where(['status' => 'publish', 'type' => 'post'])
+            ->latest('updated_at')
+            ->take(30)
+            ->get();
+
+        $latestPostDate = optional($posts->first())->updated_at ?? optional($posts->first())->created_at ?? now();
+
+        $xml = view('frontend.sitemap.feed', compact('posts', 'latestPostDate'))->render();
+
+        return response($xml, 200, [
+            'Content-Type' => 'application/rss+xml; charset=UTF-8',
+            'Cache-Control' => 'public, max-age=3600',
+        ]);
+    }
 }
