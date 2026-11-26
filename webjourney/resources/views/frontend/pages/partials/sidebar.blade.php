@@ -46,7 +46,10 @@
                     <!--box-image-widget-->
                     @foreach($popular_posts as $post)
                         <div class="box-image-widget">
-                            <a href="{{ route('post.details',$post->slug) }}"><h4>{{ $post->title }}</h4></a>
+                            <a href="{{ route('post.details',$post->slug) }}">
+                                <svg class="wj-sb-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                <h4>{{ $post->title }}</h4>
+                            </a>
                         </div>
                     @endforeach
                 <!--box-image-widget end -->
