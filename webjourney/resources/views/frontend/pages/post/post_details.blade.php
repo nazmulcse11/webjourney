@@ -33,7 +33,20 @@
                 'author' => [
                     '@type' => 'Person',
                     'name' => 'Nazmul Hoque',
-                    'jobTitle' => 'Full-Stack Web Developer',
+                    'jobTitle' => 'Senior Full-Stack Software Engineer (8+ Years Experience)',
+                    'description' => 'Senior Full-Stack Developer with 8+ years of production experience across Laravel, PHP, Next.js, TypeScript, JavaScript, React, Vue.js, MySQL, PostgreSQL, and Flutter.',
+                    'knowsAbout' => [
+                        'Laravel',
+                        'PHP',
+                        'Next.js',
+                        'TypeScript',
+                        'JavaScript',
+                        'React',
+                        'Vue.js',
+                        'MySQL',
+                        'PostgreSQL',
+                        'Flutter',
+                    ],
                     'url' => route('about.us'),
                     'sameAs' => [
                         'https://stackoverflow.com/users/12187513/nazmul-hoque',
@@ -705,10 +718,10 @@
                                         <div style="flex: 1; min-width: 0; text-align: left;">
                                             <div style="font-size: 15px; font-weight: 700; color: #183c7d; margin-bottom: 3px; line-height: 1.3;">
                                                 Written by <a href="{{ route('about.us') }}" style="color: #183c7d; text-decoration: none;">Nazmul Hoque</a>
-                                                <span style="font-size: 12px; font-weight: 600; color: #64748b; margin-left: 6px;">• Full-Stack PHP &amp; Laravel Developer</span>
+                                                <span style="font-size: 12px; font-weight: 600; color: #64748b; margin-left: 6px;">• Senior Full-Stack Developer (8+ Years Experience)</span>
                                             </div>
                                             <p style="font-size: 13.5px !important; color: #475569 !important; line-height: 1.55 !important; margin: 0 0 8px 0 !important; padding: 0 !important; text-align: left !important;">
-                                                Full-stack web developer building production applications and practical tutorials on PHP, Laravel, MySQL, JavaScript, jQuery, Vue.js, and React.
+                                                Senior Full-Stack Engineer with 8+ years of experience building production web and mobile applications using Laravel, Next.js, TypeScript, JavaScript, React, Vue.js, MySQL, PostgreSQL, and Flutter.
                                             </p>
                                             <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 12.5px; font-weight: 600;">
                                                 <a href="https://stackoverflow.com/users/12187513/nazmul-hoque" target="_blank" rel="noopener" style="color: #183c7d; text-decoration: none;"><i class="fab fa-stack-overflow" style="color: #F9B90F; margin-right: 4px;"></i> StackOverflow</a>
